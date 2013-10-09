@@ -1,0 +1,57 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:Custom="http://www.galasoft.ch/mvvmlight"
+    xmlns:helpers="clr-namespace:whostpos.Core.Helpers;assembly=whostpos.Core"
+    x:Class="whostpos.View.UserAcount.UserLoginView" 
+             mc:Ignorable="d" Height="191" Width="288.667">
+	<Grid>
+		<telerik:RadBusyIndicator IsBusy="{Binding IsBusy}" BusyContent="{Binding BusyConyent}">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="83*"/>
+					<ColumnDefinition Width="206*"/>
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="33*"/>
+					<RowDefinition Height="106.428"/>
+					<RowDefinition Height="58*"/>
+				</Grid.RowDefinitions>
+				<TextBlock Margin="0,2,0,0" TextWrapping="Wrap" Text="{Binding Title}" VerticalAlignment="Top" Style="{DynamicResource Title}" Grid.ColumnSpan="2" Height="35.47" Grid.RowSpan="2"/>
+				<Label Content="Username :" HorizontalAlignment="Right" Margin="0,28.668,0,0" Grid.Row="1" Grid.Column="0"
+					VerticalAlignment="Top" Style="{DynamicResource LabelStyle}" Height="29.507" Width="82.333"/>
+				<Label Content="Password :" HorizontalAlignment="Right" Margin="0,62.99,0,0" Grid.Row="1" Grid.Column="0"
+					VerticalAlignment="Top" Style="{DynamicResource LabelStyle}" Height="29.507" Width="78.25"/>
+				<dxe:TextEdit Grid.Column="1" Text="{Binding Username}" Margin="0,32.001,20.146,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Style="{DynamicResource TextEditStyle}"/>
+				<PasswordBox x:Name="UserPasswordBox" Height="26" helpers:PasswordHelper.Attach="True" helpers:PasswordHelper.Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Grid.Column="1" Margin="0,64.431,21.146,0" Grid.Row="1" BorderBrush="#FF2A4375" VerticalAlignment="Top" FontSize="14.667">
+					<PasswordBox.Background>
+						<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+							<GradientStop Color="#FFD6DDEA" Offset="0.064"/>
+							<GradientStop Color="#FFCAD0DC" Offset="0.07"/>
+							<GradientStop Color="#FFD7DEEB" Offset="0.076"/>
+							<GradientStop Color="#FFEAEDF4" Offset="0.318"/>
+							<GradientStop Color="#FFA7A8AC" Offset="0.325"/>
+							<GradientStop Color="#FFEAEEF4" Offset="0.331"/>
+							<GradientStop Color="#FFF2F4F8" Offset="0.573"/>
+							<GradientStop Color="#FFE3E5E9" Offset="0.58"/>
+							<GradientStop Color="#FFF2F4F8" Offset="0.586"/>
+							<GradientStop Color="#FFF9FAFC" Offset="0.828"/>
+							<GradientStop Color="#FFEBEBEC" Offset="0.834"/>
+							<GradientStop Color="#FFFAFBFC" Offset="0.841"/>
+						</LinearGradientBrush>
+					</PasswordBox.Background>
+					<i:Interaction.Triggers>
+						<i:EventTrigger EventName="KeyDown">
+                            <Custom:EventToCommand Command="{Binding KeydownCommand}" PassEventArgsToCommand="True"/>
+						</i:EventTrigger>
+					</i:Interaction.Triggers>
+				</PasswordBox>
+				<telerik:RadButton Content="Login" Grid.Column="1" HorizontalAlignment="Center" Margin="0" Grid.Row="2" VerticalAlignment="Top" Command="{Binding LoginCommand}" Width="100"/>
+			</Grid>
+		</telerik:RadBusyIndicator>
+	</Grid>
+</UserControl>

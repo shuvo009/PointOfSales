@@ -1,0 +1,43 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" x:Class="whostpos.View.Expenses.ExpenseView" 
+             mc:Ignorable="d">
+    <Grid DataContext="{Binding ExpenceViewModel, Source={StaticResource  Locator}}">
+        <telerik:RadBusyIndicator IsBusy="{Binding IsBusy}" BusyContent="{Binding BusyConyent}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="161*"/>
+                    <ColumnDefinition Width="209*"/>
+                    <ColumnDefinition Width="56*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="43*"/>
+                    <RowDefinition Height="244*"/>
+                    <RowDefinition Height="99*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Margin="0,5,0,0" TextWrapping="Wrap" Text="{Binding Title}" VerticalAlignment="Top" Style="{DynamicResource Title}" Grid.ColumnSpan="3"/>
+                <Label Content="Particulars :" HorizontalAlignment="Right" Margin="0,44.663,0,0" Grid.Row="1"
+                       Grid.Column="0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle}"/>
+                <Label Content="Voucher Number :" HorizontalAlignment="Right" Margin="0,90.99,0,0" Grid.Row="1"
+                       Grid.Column="0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle}"/>
+                <Label Content="Amount :" HorizontalAlignment="Right" Margin="0,138.666,0,0" Grid.Row="1" Grid.Column="0"
+                       VerticalAlignment="Top" Style="{DynamicResource LabelStyle}"/>
+                <Label Content="Date :" HorizontalAlignment="Right" Margin="0,189,0,0" Grid.Row="1" Grid.Column="0"
+                       VerticalAlignment="Top" Style="{DynamicResource LabelStyle}"/>
+
+                <dxe:TextEdit Grid.Column="1" Text="{Binding SelectedItem.Particulars}" Margin="0,45,0,0" Grid.Row="1" VerticalAlignment="Top" Style="{DynamicResource TextEditStyle}"/>
+                <dxe:TextEdit Grid.Column="1" Text="{Binding SelectedItem.VoucherNumber}" Margin="0,92.667,0,0" Grid.Row="1" VerticalAlignment="Top" Style="{DynamicResource TextEditStyle}"/>
+
+                <telerik:RadNumericUpDown Minimum="0" Value="{Binding SelectedItem.Amount, Mode=TwoWay}" Grid.Column="1" Margin="0,134,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="14.667"/>
+                <telerik:RadDatePicker SelectedDate="{Binding SelectedItem.EntityDate, Mode=TwoWay}" Grid.Column="1" Margin="0,185.333,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="14.667"/>
+                <StackPanel Grid.Column="1" Margin="0" Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <telerik:RadButton Content="{Binding SaveContent}" Command="{Binding SaveCommand}" CommandParameter="{Binding SelectedItem}" HorizontalAlignment="Left" Margin="0,0.667,0,0" VerticalAlignment="Top" Style="{DynamicResource RadButtonStyle}"/>
+                    <telerik:RadButton Content="{Binding ResetContent}" Command="{Binding ResetCommand}" CommandParameter="{Binding SelectedItem}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{DynamicResource RadButtonStyle}"/>
+                </StackPanel>
+            </Grid>
+        </telerik:RadBusyIndicator>
+    </Grid>
+</UserControl>

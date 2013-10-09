@@ -1,0 +1,157 @@
+﻿<controls:MetroWindow xmlns:Other="clr-namespace:whostpos.View.Other" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:userAcount="clr-namespace:whostpos.View.UserAcount"
+    mc:Ignorable="d" x:Class="whostpos.Windows.MainWindow"
+        Title="{Binding ApplicationName}" Icon="../Icons/PosIcon.ico" ShowIconOnTitleBar="True" Height="680" Width="1000.5">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colours.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <telerik:RadBusyIndicator IsBusy="{Binding IsBusy}" BusyContent="{Binding BusyConyent}">
+    <DockPanel LastChildFill="True" >
+            <telerik:RadRibbonView Visibility="{Binding ShowRibbon}" VerticalAlignment="Top" DockPanel.Dock="Top" IsMinimized="{Binding IsMinimized}" ApplicationName="{Binding ApplicationName}">
+            <telerik:RadRibbonView.QuickAccessToolBar>
+                <telerik:QuickAccessToolBar HorizontalAlignment="Left" Width="18"/>
+            </telerik:RadRibbonView.QuickAccessToolBar>
+            <telerik:RadRibbonView.Backstage>
+                <telerik:RadRibbonBackstage telerik:KeyTipService.AccessText="F">
+                        <telerik:RadRibbonBackstageItem CloseOnClick="False" IsSelected="True" Header="Change password" telerik:ScreenTip.Title="Password Change (C)" telerik:ScreenTip.Description="Change Andmin Password." >
+                        <ContentPresenter>
+                            <ContentPresenter.Content>
+                                <userAcount:ChangePasswodView HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </ContentPresenter.Content>
+                        </ContentPresenter>
+                    </telerik:RadRibbonBackstageItem>
+                    <telerik:RadRibbonBackstageItem IsSelectable="False" Command="{Binding LogoutCommand}" Header="Logout" telerik:KeyTipService.AccessText="L" telerik:ScreenTip.Title="Logout (L)" telerik:ScreenTip.Description="Logout From Administrator Account." Icon="/MenuImages/Logout.png"/>
+                    <telerik:RadRibbonBackstageItem IsSelectable="False" Header="Exit" Command="{Binding ApplicationCloseCommand}" telerik:KeyTipService.AccessText="X" telerik:ScreenTip.Title="Exit (X)" telerik:ScreenTip.Description="Close Software." Icon="/MenuImages/exit.png"/>
+                </telerik:RadRibbonBackstage>
+            </telerik:RadRibbonView.Backstage>
+                <telerik:RadRibbonTab Header="Home" telerik:KeyTipService.AccessText="H">
+                    <telerik:RadRibbonGroup>
+                        <telerik:RadRibbonButton Content="Home" telerik:KeyTipService.AccessText="H" telerik:ScreenTip.Title="Business Summary (S)" telerik:ScreenTip.Description="Full Business Summary." LargeImage="/MenuImages/home.png" Size="Large" Command="{Binding MenuCommand}" CommandParameter="Home"/>
+                        <telerik:RadRibbonButton Content="Sales" telerik:KeyTipService.AccessText="S" telerik:ScreenTip.Title="Product Sales (S)" telerik:ScreenTip.Description="Sales Your Product`s." LargeImage="/MenuImages/Sales.png" Size="Large" Command="{Binding MenuCommand}" CommandParameter="Sales"/>
+                        <telerik:RadRibbonButton Content="Purchase" telerik:KeyTipService.AccessText="P" telerik:ScreenTip.Title="Product Purchase (P)" telerik:ScreenTip.Description="Product Purchase." LargeImage="/MenuImages/Purchase.png" Size="Large" Command="{Binding MenuCommand}" CommandParameter="Purchase"/>
+                    </telerik:RadRibbonGroup>
+                    </telerik:RadRibbonTab>
+                    <telerik:RadRibbonTab Header="Setup" telerik:KeyTipService.AccessText="S">
+                <telerik:RadRibbonGroup>
+                    <telerik:RadRibbonButton Content="Product" telerik:KeyTipService.AccessText="P" telerik:ScreenTip.Title="Product Information (P)" telerik:ScreenTip.Description="Entity Or Update Your Product Information." LargeImage="/MenuImages/Product.png" Size="Large" Command="{Binding MenuCommand}" CommandParameter="Setup Product"/>
+                </telerik:RadRibbonGroup>
+                <telerik:RadRibbonGroup>
+                    <telerik:RadRibbonButton Content="Bank" telerik:KeyTipService.AccessText="B" telerik:ScreenTip.Title="Bank Information (B)" telerik:ScreenTip.Description="Entity Or Update Your Bank Information." Size="Large" LargeImage="/MenuImages/Bank.png" Command="{Binding MenuCommand}" CommandParameter="Setup Bank Accounts"/>
+                </telerik:RadRibbonGroup>
+                <telerik:RadRibbonGroup>
+                    <telerik:RadRibbonButton Content="Supplier" telerik:KeyTipService.AccessText="S" telerik:ScreenTip.Title="Supplier Information (S)" telerik:ScreenTip.Description="Entity Or Update Your Bank Information." LargeImage="/MenuImages/Supplier.png" Size="Large" Command="{Binding MenuCommand}" CommandParameter="Setup Supplier"/>
+                </telerik:RadRibbonGroup>
+                <telerik:RadRibbonGroup>
+                    <telerik:RadRibbonButton Content="Customer" telerik:KeyTipService.AccessText="C" telerik:ScreenTip.Title="Customers Information (C)" telerik:ScreenTip.Description="Entity Or Update Your Customers Information." LargeImage="/MenuImages/CUstomer.png" Size="Large" Command="{Binding MenuCommand}" CommandParameter="Setup Customer"/>
+                </telerik:RadRibbonGroup>
+                <telerik:RadRibbonGroup>
+                    <telerik:RadRibbonButton Content="Initial Balance" telerik:KeyTipService.AccessText="S" telerik:ScreenTip.Title="Initial Balance (I)" telerik:ScreenTip.Description="Add Initial Balance" LargeImage="/MenuImages/Cash.png" Size="Large" Command="{Binding MenuCommand}" CommandParameter="View Initial Balance"/>
+                </telerik:RadRibbonGroup>
+                <telerik:RadRibbonGroup>
+                    <telerik:RadRibbonButton Content="Shop" telerik:KeyTipService.AccessText="C" telerik:ScreenTip.Title="Shop Information (O)" telerik:ScreenTip.Description="Update Your Shop Information." LargeImage="/MenuImages/Shop.png" Size="Large" Command="{Binding MenuCommand}" CommandParameter="Company"/>
+                </telerik:RadRibbonGroup>
+            </telerik:RadRibbonTab>
+            <telerik:RadRibbonTab Header="Supplier" telerik:KeyTipService.AccessText="U">
+                <telerik:RadRibbonGroup>
+                    <telerik:RadRibbonButton Content="Balance" telerik:KeyTipService.AccessText="B" telerik:ScreenTip.Title="Supplier Balance (B)" telerik:ScreenTip.Description="View Supplier`s Balance." LargeImage="/MenuImages/Balance.png" Size="Large" Command="{Binding MenuCommand}" CommandParameter="View Supplier Balance"/>
+                </telerik:RadRibbonGroup>
+                <telerik:RadRibbonGroup>
+                    <telerik:RadRibbonButton Content="Ledger" telerik:KeyTipService.AccessText="L" telerik:ScreenTip.Title="Supplier Ledger (L)" telerik:ScreenTip.Description="View a supplier Ledger." LargeImage="/MenuImages/Ledger.png" Size="Large" Command="{Binding MenuCommand}" CommandParameter="View Supplier Ledger"/>
+                </telerik:RadRibbonGroup>
+                <telerik:RadRibbonGroup>
+                    <telerik:RadRibbonButton Content="Payment" telerik:KeyTipService.AccessText="P" telerik:ScreenTip.Title="Supplier Payment (P)" telerik:ScreenTip.Description="Payment Supplier Due Amount." LargeImage="/MenuImages/Payment.png" Size="Large" Command="{Binding MenuCommand}" CommandParameter="Supplier Due Payment"/>
+                </telerik:RadRibbonGroup>
+            </telerik:RadRibbonTab>
+            <telerik:RadRibbonTab Header="Stock" telerik:KeyTipService.AccessText="T">
+                <telerik:RadRibbonGroup>
+                    <telerik:RadRibbonButton Content="Stock" telerik:KeyTipService.AccessText="S" telerik:ScreenTip.Title="Stock (S)" telerik:ScreenTip.Description="View Stock." LargeImage="/MenuImages/Stock.png" Size="Large" Command="{Binding MenuCommand}" CommandParameter="View Stock"/>
+                </telerik:RadRibbonGroup>
+            </telerik:RadRibbonTab>
+            <telerik:RadRibbonTab Header="Customer" telerik:KeyTipService.AccessText="C">
+                <telerik:RadRibbonGroup>
+                    <telerik:RadRibbonButton Content="Balance" telerik:KeyTipService.AccessText="B" telerik:ScreenTip.Title="Customer`s Banalce (B)" telerik:ScreenTip.Description="View Customer`s Balance." LargeImage="/MenuImages/Balance.png" Size="Large" Command="{Binding MenuCommand}" CommandParameter="View Customer Balance"/>
+                </telerik:RadRibbonGroup>
+                <telerik:RadRibbonGroup>
+                    <telerik:RadRibbonButton Content="Ledger" telerik:KeyTipService.AccessText="L" telerik:ScreenTip.Title="Customer`s Ledger (L)" telerik:ScreenTip.Description="View Customer`s Ledger." LargeImage="/MenuImages/Ledger.png" Size="Large" Command="{Binding MenuCommand}" CommandParameter="View Customer Ledger"/>
+                </telerik:RadRibbonGroup>
+                <telerik:RadRibbonGroup>
+                    <telerik:RadRibbonButton Content="Due Invoice" telerik:KeyTipService.AccessText="D" telerik:ScreenTip.Title="Due Invoice (D)" telerik:ScreenTip.Description="Due Invoice Payment." LargeImage="/MenuImages/DuePayment.png" Size="Large" FontSize="12" Command="{Binding MenuCommand}" CommandParameter="Customer Due Payment"/>
+                </telerik:RadRibbonGroup>
+            </telerik:RadRibbonTab>
+            <telerik:RadRibbonTab Header="Bank" telerik:KeyTipService.AccessText="B">
+                <telerik:RadRibbonGroup>
+                    <telerik:RadRibbonButton Content="Deposit" telerik:KeyTipService.AccessText="B" telerik:ScreenTip.Title="Bank Deposit (D)" telerik:ScreenTip.Description="Deposit To Bank." LargeImage="/MenuImages/Deposit.png" Size="Large" Command="{Binding MenuCommand}" CommandParameter="Do Bank Deposit"/>
+                </telerik:RadRibbonGroup>
+                <telerik:RadRibbonGroup>
+                    <telerik:RadRibbonButton Content="Withdrawal" telerik:KeyTipService.AccessText="L" telerik:ScreenTip.Title="Bank Widhdaraw (W)" telerik:ScreenTip.Description="Widhdaraw From Bank" LargeImage="/MenuImages/Widhdaraw.png" Size="Large" Command="{Binding MenuCommand}" CommandParameter="Do Bank Withdrawal"/>
+                </telerik:RadRibbonGroup>
+            </telerik:RadRibbonTab>
+            <telerik:RadRibbonTab Header="Transaction" telerik:KeyTipService.AccessText="T">
+                <telerik:RadRibbonGroup Header="Sales">
+                    <telerik:RadRibbonButton Content="Sales" telerik:KeyTipService.AccessText="S" telerik:ScreenTip.Title="Product Sales (S)" telerik:ScreenTip.Description="Sales Your Product`s." LargeImage="/MenuImages/Sales.png" Size="Large" Command="{Binding MenuCommand}" CommandParameter="Sales"/>
+                    <telerik:RadRibbonButton Content="Return" telerik:KeyTipService.AccessText="R" telerik:ScreenTip.Title="Sales Return (R)" telerik:ScreenTip.Description="Sales Return." Size="Large" LargeImage="/MenuImages/SalesReturn.png" Command="{Binding MenuCommand}" CommandParameter="View Sales Return"/>
+                </telerik:RadRibbonGroup>
+                <telerik:RadRibbonGroup Header="Purchase">
+                    <telerik:RadRibbonButton Content="Purchase" telerik:KeyTipService.AccessText="P" telerik:ScreenTip.Title="Product Purchase (P)" telerik:ScreenTip.Description="Product Purchase." LargeImage="/MenuImages/Purchase.png" Size="Large" Command="{Binding MenuCommand}" CommandParameter="Purchase"/>
+                    <telerik:RadRibbonButton Content="Return" telerik:KeyTipService.AccessText="E" telerik:ScreenTip.Title="Purchase Return (E)" telerik:ScreenTip.Description="Purchase Return." LargeImage="/MenuImages/PurchaseReturn.png" Size="Large" Command="{Binding MenuCommand}" CommandParameter="Purchase Return"/>
+                </telerik:RadRibbonGroup>
+                <telerik:RadRibbonGroup>
+                    <telerik:RadRibbonButton Content="Expenses" telerik:KeyTipService.AccessText="N" telerik:ScreenTip.Title="Expances (N)" telerik:ScreenTip.Description="Entity Expences." LargeImage="/MenuImages/Expences.png" Size="Large" Command="{Binding MenuCommand}" CommandParameter="Do Expense"/>
+                </telerik:RadRibbonGroup>
+            </telerik:RadRibbonTab>
+            <telerik:RadRibbonTab Header="Report" telerik:KeyTipService.AccessText="R">
+                <telerik:RadRibbonGroup Header="Product">
+                    <telerik:RadRibbonButton Content="Products" telerik:KeyTipService.AccessText="P" telerik:ScreenTip.Title="Product List (P)" telerik:ScreenTip.Description="View And Print Product`s List." Size="Large" LargeImage="/MenuImages/Product.png" Command="{Binding MenuCommand}" CommandParameter="View Product Report"/>
+                </telerik:RadRibbonGroup>
+                <telerik:RadRibbonGroup Header="Supplier">
+                    <telerik:RadRibbonButton Content="Suppliers" telerik:KeyTipService.AccessText="S" telerik:ScreenTip.Title="Supplier List (S)" telerik:ScreenTip.Description="View And Print Supplier`s List" LargeImage="/MenuImages/Supplier.png" Size="Large" Command="{Binding MenuCommand}" CommandParameter="Supplier Report"/>
+                </telerik:RadRibbonGroup>
+                <telerik:RadRibbonGroup Header="Customer">
+                    <telerik:RadRibbonButton Content="Customers" telerik:KeyTipService.AccessText="C" telerik:ScreenTip.Title="Customer List (C)" telerik:ScreenTip.Description="View And Print Customer`s List." Size="Large" LargeImage="/MenuImages/CUstomer.png" Command="{Binding MenuCommand}" CommandParameter="View Customer Report"/>
+                </telerik:RadRibbonGroup>
+                <telerik:RadRibbonGroup Header="Bank">
+                    <telerik:RadRibbonButton Content="Deposit" telerik:KeyTipService.AccessText="D" telerik:ScreenTip.Title="Bank Deposit (P)" telerik:ScreenTip.Description="View And Print Bank Deposit`s." LargeImage="/MenuImages/Deposit.png" Size="Large" Command="{Binding MenuCommand}" CommandParameter="View Bank Deposit Report"/>
+                    <telerik:RadRibbonButton Content="Withdrawal" telerik:KeyTipService.AccessText="W" telerik:ScreenTip.Title="Bank Widthdrawal (W)" telerik:ScreenTip.Description="View And Print Bank Widhrawal." LargeImage="/MenuImages/Widhdaraw.png" Size="Large" Command="{Binding MenuCommand}" CommandParameter="View Bank Withdrawal Report"/>
+                </telerik:RadRibbonGroup>
+                <telerik:RadRibbonGroup Header="Transaction">
+                    <telerik:RadRibbonButton Content="Purchase" telerik:KeyTipService.AccessText="U" telerik:ScreenTip.Title="Purchase List (U)" telerik:ScreenTip.Description="View And Print Purchase List." LargeImage="/MenuImages/Purchase.png" Size="Large" Command="{Binding MenuCommand}" CommandParameter="View Stock Register"/>
+                    <telerik:RadRibbonButton Content="Sales" telerik:KeyTipService.AccessText="L" telerik:ScreenTip.Title="Product Sales List (L)" telerik:ScreenTip.Description="View And Print Product Sale`s List." Size="Large" LargeImage="/MenuImages/Sales.png" Command="{Binding MenuCommand}" CommandParameter="View Sales Report"/>
+                </telerik:RadRibbonGroup>
+                <telerik:RadRibbonGroup Header="Expanse">
+                    <telerik:RadRibbonButton Content="Expenses" telerik:KeyTipService.AccessText="N" telerik:ScreenTip.Title="Expances (N)" telerik:ScreenTip.Description="Entity Expences." LargeImage="/MenuImages/Expences.png" Size="Large" Command="{Binding MenuCommand}" CommandParameter="View Expenses Report"/>
+                </telerik:RadRibbonGroup>
+                <telerik:RadRibbonGroup Header="Return">
+                    <telerik:RadRibbonButton Content="Sales" telerik:KeyTipService.AccessText="L" telerik:ScreenTip.Title="Sales Return (L)" telerik:ScreenTip.Description="View Sales Report." LargeImage="/MenuImages/PurchaseReturn.png" Size="Large" Command="{Binding MenuCommand}" CommandParameter="View Sales Return Report"/>
+                    <telerik:RadRibbonButton Content="Purchase" telerik:KeyTipService.AccessText="U" telerik:ScreenTip.Title="Purchase Return (U)" telerik:ScreenTip.Description="View Purchase Report" LargeImage="/MenuImages/SalesReturn.png" Size="Large" Command="{Binding MenuCommand}" CommandParameter="View Purchase Return Report"/>
+                </telerik:RadRibbonGroup>
+            </telerik:RadRibbonTab>
+            <telerik:RadRibbonTab Header="Other" telerik:KeyTipService.AccessText="O">
+                <telerik:RadRibbonGroup>
+                    <telerik:RadRibbonButton Content="User Account" telerik:KeyTipService.AccessText="B" telerik:ScreenTip.Title="UserAccount (A)" telerik:ScreenTip.Description="Create Useraccount for Your employee." LargeImage="/MenuImages/UserAccountControl.png" Size="Large" Command="{Binding MenuCommand}" CommandParameter="User Account"/>
+                </telerik:RadRibbonGroup>
+                <telerik:RadRibbonGroup>
+                    <telerik:RadRibbonButton Content="Database" telerik:KeyTipService.AccessText="L" telerik:ScreenTip.Title="Database (D)" telerik:ScreenTip.Description="Backup And Restore Your Database" LargeImage="/MenuImages/Database.png" Size="Large" Command="{Binding MenuCommand}" CommandParameter="View Database Restore And Backup"/>
+                </telerik:RadRibbonGroup>
+            </telerik:RadRibbonTab>
+        </telerik:RadRibbonView>
+        <ContentPresenter x:Name="MainContentPresenter" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
+               
+        </ContentPresenter>
+
+    </DockPanel>
+    </telerik:RadBusyIndicator>
+</controls:MetroWindow>

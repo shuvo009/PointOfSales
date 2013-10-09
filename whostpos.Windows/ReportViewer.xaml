@@ -1,0 +1,23 @@
+﻿<controls:MetroWindow
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+	x:Class="whostpos.Windows.ReportViewer"
+	x:Name="Window"
+	xmlns:tr="http://schemas.telerik.com/wpf"
+	Title="Whost Plus Report Viewer" ShowIconOnTitleBar="True" Icon="Icons/PosIcon.ico" Height="300" Width="300" WindowState="Maximized">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colours.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <tr:ReportViewer x:Name="ReportHost"/>
+    </Grid>
+</controls:MetroWindow>

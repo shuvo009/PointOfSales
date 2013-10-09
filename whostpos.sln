@@ -1,0 +1,74 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "whostpos.Domain", "whostpos.Domain\whostpos.Domain.csproj", "{704FFEBE-C00F-4315-A86D-A1FDEF0882AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "whostpos.Entitys", "whostpos.Entitys\whostpos.Entitys.csproj", "{E2A01DE5-6D38-4F9A-9321-9784657B9F68}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "whostpos.Reports", "whostpos.Reports\whostpos.Reports.csproj", "{364F4F91-93F0-456F-9F9E-EA7B02CAF507}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "whostpos.Windows", "whostpos.Windows\whostpos.Windows.csproj", "{14C49399-8939-4980-B2C0-40B87446CCFA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "whostpos.Core", "whostpos.Core\whostpos.Core.csproj", "{9137C316-8F1F-4F64-8CE4-B214789A3705}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "whostpos", "whostpos\whostpos.csproj", "{50F2B11B-B7B0-4378-BF65-7623B633DD55}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 7
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://wrdreamer.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = whostpos.Core\\whostpos.Core.csproj
+		SccProjectName1 = whostpos.Core
+		SccLocalPath1 = whostpos.Core
+		SccProjectUniqueName2 = whostpos.Domain\\whostpos.Domain.csproj
+		SccProjectName2 = whostpos.Domain
+		SccLocalPath2 = whostpos.Domain
+		SccProjectUniqueName3 = whostpos.Entitys\\whostpos.Entitys.csproj
+		SccProjectName3 = whostpos.Entitys
+		SccLocalPath3 = whostpos.Entitys
+		SccProjectUniqueName4 = whostpos.Reports\\whostpos.Reports.csproj
+		SccProjectName4 = whostpos.Reports
+		SccLocalPath4 = whostpos.Reports
+		SccProjectUniqueName5 = whostpos.Windows\\whostpos.Windows.csproj
+		SccProjectName5 = whostpos.Windows
+		SccLocalPath5 = whostpos.Windows
+		SccProjectUniqueName6 = whostpos\\whostpos.csproj
+		SccProjectName6 = whostpos
+		SccLocalPath6 = whostpos
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{704FFEBE-C00F-4315-A86D-A1FDEF0882AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{704FFEBE-C00F-4315-A86D-A1FDEF0882AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{704FFEBE-C00F-4315-A86D-A1FDEF0882AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{704FFEBE-C00F-4315-A86D-A1FDEF0882AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2A01DE5-6D38-4F9A-9321-9784657B9F68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2A01DE5-6D38-4F9A-9321-9784657B9F68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2A01DE5-6D38-4F9A-9321-9784657B9F68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2A01DE5-6D38-4F9A-9321-9784657B9F68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{364F4F91-93F0-456F-9F9E-EA7B02CAF507}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{364F4F91-93F0-456F-9F9E-EA7B02CAF507}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{364F4F91-93F0-456F-9F9E-EA7B02CAF507}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{364F4F91-93F0-456F-9F9E-EA7B02CAF507}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14C49399-8939-4980-B2C0-40B87446CCFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14C49399-8939-4980-B2C0-40B87446CCFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14C49399-8939-4980-B2C0-40B87446CCFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14C49399-8939-4980-B2C0-40B87446CCFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9137C316-8F1F-4F64-8CE4-B214789A3705}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9137C316-8F1F-4F64-8CE4-B214789A3705}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9137C316-8F1F-4F64-8CE4-B214789A3705}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9137C316-8F1F-4F64-8CE4-B214789A3705}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50F2B11B-B7B0-4378-BF65-7623B633DD55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50F2B11B-B7B0-4378-BF65-7623B633DD55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50F2B11B-B7B0-4378-BF65-7623B633DD55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50F2B11B-B7B0-4378-BF65-7623B633DD55}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,53 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" 
+             xmlns:converters="clr-namespace:whostpos.Converters"
+             xmlns:helpers="clr-namespace:whostpos.Core.Helpers;assembly=whostpos.Core"
+             x:Class="whostpos.View.Bank.BankWithdrawalReportView" 
+             mc:Ignorable="d">
+	<UserControl.Resources>
+		<converters:PosEnumToBooleanConverter x:Key="EnumToBooleanConverter"/>
+		<converters:BoolReverser x:Key="BoolRevers"/>
+	</UserControl.Resources>
+	<Grid DataContext="{Binding BankWithdrawalReportViewModel, Source={StaticResource Locator}}" Margin="0">
+		<telerik:RadBusyIndicator IsBusy="{Binding IsBusy}" BusyContent="{Binding BusyConyent}">
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="37*"/>
+					<RowDefinition Height="104*"/>
+					<RowDefinition Height="332*"/>
+					<RowDefinition Height="40*"/>
+				</Grid.RowDefinitions>
+				<telerik:GroupBox Header="Search" Grid.Row="1" Style="{DynamicResource GroupBoxStyle}">
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="55*"/>
+							<ColumnDefinition Width="117*"/>
+							<ColumnDefinition Width="81*"/>
+						</Grid.ColumnDefinitions>
+						<RadioButton x:Name="BankDepoRptRdoDateOne" Content="{Binding SingleDateContent}" Margin="0,4.192,0,0" TabIndex="2"  IsChecked="{Binding SearchOptions, ConverterParameter={x:Static helpers:SearchOptions.SingleDate}, Converter={StaticResource EnumToBooleanConverter}}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{DynamicResource RadioButtonStyle}"/>
+						<RadioButton x:Name="BankDepoRptRdoDateTwo" Content="{Binding DateRangeContent}" Margin="0,32.429,0,0" TabIndex="4" IsChecked="{Binding SearchOptions, ConverterParameter={x:Static helpers:SearchOptions.DateRange}, Converter={StaticResource EnumToBooleanConverter}}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{DynamicResource RadioButtonStyle}"/>
+						<RadioButton x:Name="BankDepoRptRdoAll" Content="{Binding AllContent}" Margin="0,61.097,0,-0.002" TabIndex="6" IsChecked="{Binding SearchOptions, ConverterParameter={x:Static helpers:SearchOptions.All}, Converter={StaticResource EnumToBooleanConverter}}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{DynamicResource RadioButtonStyle}"/>
+						<telerik:RadButton x:Name="BankDepoRptBtnSearch" Content="{Binding SearchContent}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,0,-0.001" TabIndex="7" IsDefault="True" Command="{Binding SearchCommand}" CommandParameter="{Binding SearchMetadata}" Grid.Column="2" Width="89.1" Style="{DynamicResource RadButtonStyle}"/>
+						<telerik:RadDatePicker Margin="0,2.692,0,0" VerticalAlignment="Top" TabIndex="3" IsTabStop="True" SelectedDate="{Binding SearchMetadata.FromDate, Mode=OneWay}" IsEnabled="{Binding IsChecked, Converter={StaticResource BoolRevers}, ElementName=BankDepoRptRdoAll}" Grid.Column="1" Style="{DynamicResource BasicStyle}"/>
+						<telerik:RadDatePicker Margin="0,32.698,0,0" VerticalAlignment="Top" TabIndex="5" IsTabStop="True" SelectedDate="{Binding SearchMetadata.ToDate, Mode=OneWay}" IsEnabled="{Binding IsChecked, ElementName=BankDepoRptRdoDateTwo}" Grid.Column="1" Style="{DynamicResource BasicStyle}"/>
+					</Grid>
+				</telerik:GroupBox>
+				<telerik:RadGridView x:Name="BankDepoRptGridView" ItemsSource="{Binding SearchResult}" Grid.Row="2" IsReadOnly="True" AutoGenerateColumns="False" ValidatesOnDataErrors="None">
+					<telerik:RadGridView.Columns>
+						<telerik:GridViewDataColumn Header="Name" MinWidth="100" HeaderTextAlignment="Center" DataMemberBinding="{Binding BankAccount.BankName}"/>
+						<telerik:GridViewDataColumn Header="Date" MinWidth="100" HeaderTextAlignment="Center" DataMemberBinding="{Binding DateOfTan}"  DataFormatString="{}{0:d}"/>
+						<telerik:GridViewDataColumn Header="Cheque" MinWidth="100" HeaderTextAlignment="Center" DataMemberBinding="{Binding ChequeNumber}"/>
+						<telerik:GridViewDataColumn Header="Withdrawal" MinWidth="100" HeaderTextAlignment="Center" DataMemberBinding="{Binding Withdrawal}"/>
+						<telerik:GridViewDataColumn Header="Description" MinWidth="100" HeaderTextAlignment="Center" DataMemberBinding="{Binding Particulars}"/>
+					</telerik:RadGridView.Columns>
+				</telerik:RadGridView>
+				<telerik:RadButton Content="{Binding PrintContent}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="100" TabIndex="7" Command="{Binding CollectionPrintCommand}" CommandParameter="{Binding Items, ElementName=BankDepoRptGridView}" Grid.Row="3" Style="{DynamicResource RadButtonStyle}" Margin="0,0,10,10"/>
+				<TextBlock Margin="0" TextWrapping="Wrap" Text="{Binding Title}" VerticalAlignment="Top" Style="{DynamicResource Title}"/>
+			</Grid>
+		</telerik:RadBusyIndicator>
+	</Grid>
+</UserControl>

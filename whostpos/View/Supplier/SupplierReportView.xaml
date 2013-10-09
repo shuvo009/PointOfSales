@@ -1,0 +1,56 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:converters="clr-namespace:whostpos.Converters"
+             xmlns:helpers="clr-namespace:whostpos.Core.Helpers;assembly=whostpos.Core"
+             x:Class="whostpos.View.Supplier.SupplierReportView" 
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:PosEnumToBooleanConverter x:Key="EnumToBooleanConverter"/>
+        <converters:BoolReverser x:Key="BoolRevers"/>
+    </UserControl.Resources>
+    <Grid DataContext="{Binding SupplierReportViewModel, Source={StaticResource Locator}}">
+        <telerik:RadBusyIndicator IsBusy="{Binding IsBusy}" BusyContent="{Binding BusyConyent}">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="101"/>
+                    <RowDefinition Height="195*"/>
+                    <RowDefinition Height="35"/>
+                </Grid.RowDefinitions>
+                <telerik:GroupBox Header="Search" Margin="0,47.959,0,1.527" Style="{DynamicResource GroupBoxStyle}" Grid.RowSpan="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="164*"/>
+                            <ColumnDefinition Width="346*"/>
+                            <ColumnDefinition Width="247*"/>
+                        </Grid.ColumnDefinitions>
+                        <RadioButton x:Name="SupplierReportRadioDateone" Content="{Binding SingleDateContent}" TabIndex="2" IsChecked="{Binding SearchOptions, ConverterParameter={x:Static helpers:SearchOptions.SingleDate}, Converter={StaticResource EnumToBooleanConverter}}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{DynamicResource RadioButtonStyle}" Margin="0,4.662,0,0"/>
+                        <RadioButton x:Name="SupplierReportRadioDateTwo" Content="{Binding DateRangeContent}" Margin="0,30.432,0,0" TabIndex="4" IsChecked="{Binding SearchOptions, ConverterParameter={x:Static helpers:SearchOptions.DateRange}, Converter={StaticResource EnumToBooleanConverter}}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{DynamicResource RadioButtonStyle}"/>
+                        <RadioButton x:Name="SupplierReportRadioAll" Content="{Binding AllContent}" Margin="0,57.55,0,0" TabIndex="6" IsChecked="{Binding SearchOptions, ConverterParameter={x:Static helpers:SearchOptions.All}, Converter={StaticResource EnumToBooleanConverter}}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{DynamicResource RadioButtonStyle}"/>
+                        <telerik:RadButton Content="{Binding SearchContent}" IsDefault="True" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="85.537" TabIndex="7" Command="{Binding SearchCommand}" CommandParameter="{Binding SearchMetadata}" Grid.Column="2" Style="{DynamicResource RadButtonStyle}"/>
+                        <telerik:RadDatePicker VerticalAlignment="Top" TabIndex="3" IsTabStop="True" SelectedDate="{Binding SearchMetadata.FromDate, Mode=OneWay}" IsEnabled="{Binding IsChecked, Converter={StaticResource BoolRevers}, ElementName=SupplierReportRadioAll}" Style="{DynamicResource BasicStyle}" Grid.Column="1"/>
+                        <telerik:RadDatePicker Margin="0,30.506,0,0" VerticalAlignment="Top" TabIndex="5" IsTabStop="True" SelectedDate="{Binding SearchMetadata.ToDate, Mode=OneWay}" IsEnabled="{Binding IsChecked, ElementName=SupplierReportRadioDateTwo}" Style="{DynamicResource BasicStyle}" Grid.Column="1"/>
+                    </Grid>
+                </telerik:GroupBox>
+                <telerik:RadGridView x:Name="SupplierReportGridView" ItemsSource="{Binding SearchResult}" Margin="0" Grid.Row="2" AutoGenerateColumns="False" IsReadOnly="True" ValidatesOnDataErrors="None">
+                    <telerik:RadGridView.Columns>
+                        <telerik:GridViewDataColumn Header="Date" MinWidth="100" HeaderTextAlignment="Center" DataMemberBinding="{Binding EntityDate}" DataFormatString="{}{0:d}"/>
+                        <telerik:GridViewDataColumn Header="Name" MinWidth="100" HeaderTextAlignment="Center" DataMemberBinding="{Binding Name}"/>
+                        <telerik:GridViewDataColumn Header="Telephone" MinWidth="100" HeaderTextAlignment="Center" DataMemberBinding="{Binding Telephone}"/>
+                        <telerik:GridViewDataColumn Header="Mobile" MinWidth="100" HeaderTextAlignment="Center" DataMemberBinding="{Binding Mobile}"/>
+                        <telerik:GridViewDataColumn Header="E-Mail" MinWidth="100" HeaderTextAlignment="Center" DataMemberBinding="{Binding Email}"/>
+                        <telerik:GridViewDataColumn Header="Web" MinWidth="100" HeaderTextAlignment="Center" DataMemberBinding="{Binding WebSite}"/>
+                        <telerik:GridViewDataColumn Header="Address" MinWidth="100" HeaderTextAlignment="Center" DataMemberBinding="{Binding Address}"/>
+                    </telerik:RadGridView.Columns>
+                </telerik:RadGridView>
+                <telerik:RadButton Content="{Binding PrintContent}" HorizontalAlignment="Right" Margin="0,0,10,3.55" VerticalAlignment="Bottom" Width="100" Command="{Binding CollectionPrintCommand}" CommandParameter="{Binding Items, ElementName=SupplierReportGridView}" Grid.Row="3" Style="{DynamicResource RadButtonStyle}"/>
+                <TextBlock Margin="0,10,0,0" TextWrapping="Wrap" Text="{Binding Title}" VerticalAlignment="Top" Style="{DynamicResource Title}" Height="35.47"/>
+            </Grid>
+        </telerik:RadBusyIndicator>
+    </Grid>
+</UserControl>

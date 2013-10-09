@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="whostpos.View.UserAcount.ChangePasswodView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:helpers1="clr-namespace:whostpos.Core.Helpers;assembly=whostpos.Core"
+             mc:Ignorable="d" Height="305" Width="429">
+    <Grid>
+        <telerik:RadBusyIndicator IsBusy="{Binding IsBusy}" BusyContent="{Binding BusyConyent}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="39"/>
+                    <RowDefinition Height="146*"/>
+                    <RowDefinition Height="113*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <PasswordBox x:Name="CurrentPasswordBox" Margin="0,18.449,0,0" VerticalAlignment="Top" Height="30" Grid.Column="1" FontSize="14.667" helpers1:PasswordHelper.Attach="True" helpers1:PasswordHelper.Password="{Binding CurrentPassword, Mode=OneWayToSource,  UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" TabIndex="0" Grid.Row="1"/>
+                <Label Content="Current  Password :" HorizontalAlignment="Right" Margin="0,19.5,0,0" VerticalAlignment="Top" Grid.Row="1"
+                       Grid.Column="0" Style="{DynamicResource LabelStyle}"/>
+                <TextBlock HorizontalAlignment="Left" Margin="6.992,0,0,0" TextWrapping="Wrap" Text="{Binding Title}" VerticalAlignment="Top"
+                           Grid.Row="0" Grid.Column="1" Height="15.96" Width="0"/>
+                <PasswordBox x:Name="NewPasswordBox" Margin="0,58.399,0,0" VerticalAlignment="Top" Height="30" Grid.Column="1" FontSize="14.667" helpers1:PasswordHelper.Attach="True" helpers1:PasswordHelper.Password="{Binding NewPassword, Mode=OneWayToSource,  UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" TabIndex="1" Grid.Row="1"/>
+                <Label Content="New Password :" HorizontalAlignment="Left" Margin="37.186,58.45,0,0" VerticalAlignment="Top" Grid.Row="1"
+                       Grid.Column="0" Style="{DynamicResource LabelStyle}"/>
+                <PasswordBox x:Name="ConformPasswordBox" Margin="0,101.349,0,0" VerticalAlignment="Top" Height="30" Grid.Column="1" FontSize="14.667" helpers1:PasswordHelper.Attach="True" helpers1:PasswordHelper.Password="{Binding ConformPassword, Mode=OneWayToSource,  UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" TabIndex="2" Grid.Row="1"/>
+                <Label Content="Conform Password :" HorizontalAlignment="Left" Margin="10.406,100.9,0,0" VerticalAlignment="Top" Grid.Row="1"
+                       Grid.Column="0" Style="{DynamicResource LabelStyle}"/>
+                <telerik:RadButton Content="Change" Grid.Column="1" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Top" Width="100" Command="{Binding ChangePasswodCommand}" TabIndex="3" Grid.Row="2" Style="{DynamicResource RadButtonStyle}"/>
+                <TextBlock Margin="0,2,0,0" TextWrapping="Wrap" Text="{Binding Title}" VerticalAlignment="Top"
+                           Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" Style="{DynamicResource Title}" Height="35.47"/>
+            </Grid>
+        </telerik:RadBusyIndicator>
+    </Grid>
+</UserControl>

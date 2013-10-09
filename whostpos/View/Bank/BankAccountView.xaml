@@ -1,0 +1,60 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" x:Class="whostpos.View.Bank.BankAccountView" 
+             mc:Ignorable="d">
+    <Grid DataContext="{Binding BankAcountViewModel, Source={StaticResource Locator}}">
+        <telerik:RadBusyIndicator IsBusy="{Binding IsBusy}" BusyContent="{Binding BusyConyent}">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="45*"/>
+                    <RowDefinition Height="348*"/>
+                    <RowDefinition Height="247*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="425*"/>
+                    <ColumnDefinition Width="213*"/>
+                    <ColumnDefinition Width="268*"/>
+                    <ColumnDefinition Width="289*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Margin="0,7,0,0" TextWrapping="Wrap" Text="Bank Setup" VerticalAlignment="Top" Style="{DynamicResource Title}" Grid.ColumnSpan="4"/>
+                <Label HorizontalAlignment="Right" Margin="0,187.831,0,0" Content="Bank Name :" VerticalAlignment="Top" Grid.Column="1" Style="{DynamicResource LabelStyle}" Height="29.507" Width="91.41" Grid.Row="1"/>
+                <dxe:TextEdit Grid.Column="2" Margin="5,190.333,0,0" VerticalAlignment="Top" Height="26" TabIndex="2" Text="{Binding SelectedItem.BankName, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Style="{DynamicResource TextEditStyle}" Grid.Row="1"/>
+                <Label HorizontalAlignment="Right" Margin="0,152.996,0,0" Content="Account Number :" Grid.Column="1" VerticalAlignment="Top" Style="{DynamicResource LabelStyle}" Height="29.507" Width="127.68" Grid.Row="1"/>
+                <dxe:TextEdit Grid.Column="2" Margin="5,155.666,0,0" TabIndex="1" Text="{Binding SelectedItem.BankAccountNumber, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Height="26" VerticalAlignment="Top" Style="{DynamicResource TextEditStyle}" Grid.Row="1"/>
+                <Label HorizontalAlignment="Right" Margin="0,117.66,0,0" Content="Account Name :" VerticalAlignment="Top" Grid.Column="1" Style="{DynamicResource LabelStyle}" Height="29.507" Width="113.12" Grid.Row="1"/>
+                <dxe:TextEdit Grid.Column="2" Margin="5,118.996,0,0" VerticalAlignment="Top" Height="26" TabIndex="0" Text="{Binding SelectedItem.AccountName, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Style="{DynamicResource TextEditStyle}" Grid.Row="1"/>
+                <telerik:RadGridView x:Name="BankList" Margin="5,40,0,0" ItemsSource="{Binding ItemCollection}" IsReadOnly="True" ValidatesOnDataErrors="None" Grid.RowSpan="2" AutoGenerateColumns="False" Grid.Row="1" TabIndex="10">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding SelectionChangedCommand}" CommandParameter="{Binding SelectedItem.Id, ElementName=BankList}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseDoubleClick">
+                            <i:InvokeCommandAction Command="{Binding SelectionChangedCommand}" CommandParameter="{Binding SelectedItem.Id, ElementName=BankList}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <telerik:RadGridView.Columns>
+                        <telerik:GridViewDataColumn Header="Bank Name" HeaderTextAlignment="Center" MinWidth="110" DataMemberBinding="{Binding BankName}" ShowDistinctFilters="False"/>
+                        <telerik:GridViewDataColumn Header="Account Name" HeaderTextAlignment="Center" MinWidth="140" DataMemberBinding="{Binding AccountName}" ShowDistinctFilters="False"/>
+                    </telerik:RadGridView.Columns>
+                </telerik:RadGridView>
+                <dxe:TextEdit Margin="5,5,0,0" VerticalAlignment="Top" Style="{DynamicResource TextEditStyle}" NullText="Search" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" TabIndex="9"/>
+                <Grid Margin="0" Grid.ColumnSpan="3" Grid.Column="1" Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Margin="0">
+                        <telerik:RadButton Width="88.093" Content="{Binding SaveContent}" IsDefault="True" TabIndex="3" Command="{Binding SaveCommand}" CommandParameter="{Binding SelectedItem}"/>
+                        <telerik:RadButton Width="88.093" Content="{Binding NewContent}" IsDefault="True" TabIndex="5" Command="{Binding NewCommand}"/>
+                        <telerik:RadButton Width="88.093" Content="{Binding ResetContent}" IsDefault="True" TabIndex="6" Command="{Binding ResetCommand}" CommandParameter="{Binding SelectedItem}"/>
+                        <telerik:RadButton Width="86.17" Content="{Binding DeleteContent}" TabIndex="7" Command="{Binding DeleteCommand}" CommandParameter="{Binding SelectedItem}"/>
+                        <telerik:RadButton Width="86.17" Content="{Binding PrintContent}" TabIndex="8" Command="{Binding PrintCommand}" CommandParameter="{Binding SelectedItem}"/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </telerik:RadBusyIndicator>
+    </Grid>
+</UserControl>

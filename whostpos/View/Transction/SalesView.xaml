@@ -1,0 +1,174 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:System="clr-namespace:System;assembly=mscorlib" 
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+             xmlns:Custom="http://www.galasoft.ch/mvvmlight" 
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:converters="clr-namespace:whostpos.Converters"
+             xmlns:Helpers="clr-namespace:whostpos.Core.Helpers;assembly=whostpos.Core"
+             x:Class="whostpos.View.Transction.SalesView" 
+             mc:Ignorable="d">
+	<UserControl.Resources>
+		<ObjectDataProvider x:Key="PaymentMethords" MethodName="GetNames" ObjectType="{x:Type System:Enum}">
+			<ObjectDataProvider.MethodParameters>
+				<x:Type TypeName="Helpers:PaymentMethods" />
+			</ObjectDataProvider.MethodParameters>
+		</ObjectDataProvider>
+		<converters:PaymentMethodToPanelVisiable x:Key="PaymentMethodToPanelVisiable"/>
+	</UserControl.Resources>
+		<Grid DataContext="{Binding SalesViewModel, Source={StaticResource Locator}}" Margin="0">
+			<Grid.RowDefinitions>
+				<RowDefinition/>
+			</Grid.RowDefinitions>
+			<telerik:RadBusyIndicator IsBusy="{Binding IsBusy}" BusyContent="{Binding BusyConyent}">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="40"/>
+						<RowDefinition/>
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="372*"/>
+						<ColumnDefinition Width="503*"/>
+					</Grid.ColumnDefinitions>
+					<TextBlock Margin="0" TextWrapping="Wrap" Text="{Binding Title}" VerticalAlignment="Top" Style="{DynamicResource Title}" Height="35.47" Grid.ColumnSpan="2"/>
+					<telerik:GroupBox Header="Product Information" Style="{DynamicResource GroupBoxStyle}" Height="177" VerticalAlignment="Top" Grid.Row="1" Margin="0">
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="89*"/>
+								<ColumnDefinition Width="103*"/>
+								<ColumnDefinition Width="167*"/>
+							</Grid.ColumnDefinitions>
+							<Label HorizontalAlignment="Left" Content="Name :" VerticalAlignment="Top" Style="{DynamicResource LabelStyle}" Margin="0,33.987,0,0" Grid.Column="2"/>
+							<TextBlock TextWrapping="Wrap" Text="{Binding TransctionMetaData.Name}" VerticalAlignment="Top" Margin="58,38.653,0,0" Grid.Column="2"/>
+							<telerik:RadNumericUpDown Minimum="0"  Margin="0,63.283,0,0" VerticalAlignment="Top" IsInteger="True" TabIndex="2" Value="{Binding TransctionMetaData.SalesQuantity, Mode=TwoWay}" Grid.Column="1" Maximum="{Binding Text, ElementName=stock}">
+								<i:Interaction.Triggers>
+									<i:EventTrigger EventName="ValueChanged">
+										<Custom:EventToCommand Command="{Binding AmountCalculatorCommand, Mode=OneWay}" />
+									</i:EventTrigger>
+								</i:Interaction.Triggers>
+							</telerik:RadNumericUpDown>
+							<Label HorizontalAlignment="Right" Content="Quantity :" VerticalAlignment="Top" Margin="0,63.779,2.333,0" Style="{DynamicResource LabelStyle}" Height="29.507" Width="72.907"/>
+							<Label Content="Stock :" VerticalAlignment="Top" Margin="0" Style="{DynamicResource LabelStyle}" HorizontalAlignment="Right"/>
+							<TextBlock x:Name="stock" Text="{Binding TransctionMetaData.Quantity}" Margin="0.333,4,166.218,126" Grid.Column="1" Grid.ColumnSpan="2"/>
+							<telerik:RadButton Content="_Add" HorizontalAlignment="Right" VerticalAlignment="Bottom" IsDefault="True" TabIndex="6" Command="{Binding AddToInvoiceCommand}" Grid.Column="2" Width="50" Style="{DynamicResource RadButtonStyle}" Margin="0,0,0,-0.001"/>
+							<Label HorizontalAlignment="Right" Content="Sale Rate  :" VerticalAlignment="Top" Margin="0,25.072,0,0" Style="{DynamicResource LabelStyle}"/>
+							<Label HorizontalAlignment="Right" Content="Amount  :" VerticalAlignment="Top" Margin="0,105.302,0.552,0" Style="{DynamicResource LabelStyle}" Height="29.507" Width="73.47"/>
+							<telerik:RadButton Content="Select a Product" Command="{Binding SelectProductCommand}" Grid.Column="2" HorizontalAlignment="Right" Margin="0,-0.017,-1.311,0" VerticalAlignment="Top" FontSize="12" Width="94" Style="{DynamicResource RadButtonStyle}"/>
+							<TextBlock Text="{Binding TransctionMetaData.SalesRate}" Margin="0,29.333,0,100.666" Grid.Column="1"/>
+							<Border BorderThickness="1" Grid.Column="2" HorizontalAlignment="Left" Height="60.667" Margin="8.957,79.493,0,0" VerticalAlignment="Top" Width="94" Style="{DynamicResource BorderStyle}">
+								<Image Source="{Binding TransctionMetaData.Image}"/>
+							</Border>
+							<TextBlock Text="{Binding TransctionMetaData.Amount}" Margin="0,110.833,0,19.166" Grid.Column="1"/>
+						</Grid>
+					</telerik:GroupBox>
+					<telerik:GroupBox Header="Bill" Style="{DynamicResource GroupBoxStyle}" Margin="0,176,0,0" Height="177" VerticalAlignment="Top" Grid.Row="1">
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="37*"/>
+								<ColumnDefinition Width="40*"/>
+							</Grid.ColumnDefinitions>
+							<Label HorizontalAlignment="Right" Content="Sub Total :" VerticalAlignment="Top" Margin="-3.635,1,0,0" Style="{DynamicResource LabelStyle}" Height="29.507"/>
+							<TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="{Binding SelectedItem.SubTotal}" VerticalAlignment="Top" Margin="5,5.002,0,0" Grid.Column="1" Height="19.507"/>
+							<Label HorizontalAlignment="Right" Content="Paid :" VerticalAlignment="Top" Margin="0,95.436,0,0" Style="{DynamicResource LabelStyle}"/>
+							<TextBlock TextWrapping="Wrap" Text="{Binding SelectedItem.PaidTotal}" VerticalAlignment="Top" Margin="5,101.522,0,0" Grid.Column="1" Height="19.507"/>
+							<Label HorizontalAlignment="Right" Content="Due :" VerticalAlignment="Top" Margin="0,123.381,0,-2.445" Style="{DynamicResource LabelStyle}" Height="29.507"/>
+							<TextBlock x:Name="PurchaseDue" TextWrapping="Wrap" Text="{Binding SelectedItem.DueTotal}" VerticalAlignment="Top" Margin="5,128.467,0,0" Grid.Column="1" Height="19.507"/>
+							<Label HorizontalAlignment="Right" Content="Discount :" VerticalAlignment="Top" Margin="0,33.436,1.325,0" Style="{DynamicResource LabelStyle}" Height="29.507"/>
+							<telerik:RadNumericUpDown Minimum="0" Margin="2.328,31.107,0.124,0" VerticalAlignment="Top" TabIndex="5" Value="{Binding SelectedItem.Discount, Mode=TwoWay}" Grid.Column="1" Maximum="{Binding Text, ElementName=textBlock}">
+								<i:Interaction.Triggers>
+									<i:EventTrigger EventName="ValueChanged">
+										<Custom:EventToCommand Command="{Binding DiscontCalculatorCommand, Mode=OneWay}" />
+									</i:EventTrigger>
+								</i:Interaction.Triggers>
+							</telerik:RadNumericUpDown>
+							<Label HorizontalAlignment="Right" Content="Net Total :" VerticalAlignment="Top" Margin="-1,66.601,1.758,0" Style="{DynamicResource LabelStyle}" Height="29.507"/>
+							<TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="{Binding SelectedItem.NetTotal}" VerticalAlignment="Top" Margin="3.242,71.937,1.759,0" Grid.Column="1" Height="19.507"/>
+						</Grid>
+					</telerik:GroupBox>
+					<telerik:GroupBox Header="Customer Information" Margin="0,352,0,0" Style="{DynamicResource GroupBoxStyle}" Height="159" VerticalAlignment="Top" Grid.Row="1">
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="23*"/>
+								<ColumnDefinition Width="48*"/>
+							</Grid.ColumnDefinitions>
+							<Label HorizontalAlignment="Right" Content="Name :" VerticalAlignment="Top" Margin="0,2.975,0,0" Style="{DynamicResource LabelStyle}" Height="29.507" Width="55.933"/>
+							<TextBlock TextWrapping="Wrap" Text="{Binding SelectedMan.Name}" VerticalAlignment="Top" Margin="5,9.645,0,0" Grid.Column="1" Height="19.507"/>
+							<Label HorizontalAlignment="Right" Content="Mobile  :" VerticalAlignment="Top" Margin="0,31.415,0,0" Style="{DynamicResource LabelStyle}" Height="29.507" Width="66.377"/>
+							<TextBlock TextWrapping="Wrap" Text="{Binding SelectedMan.Mobile}" VerticalAlignment="Top" Height="19.95" Margin="5,36.174,0,0" Grid.Column="1"/>
+							<Label HorizontalAlignment="Right" Content="Balance :" VerticalAlignment="Top" Margin="0,65.121,0,0" Style="{DynamicResource LabelStyle}" Height="29.507" Width="66.827"/>
+							<TextBlock TextWrapping="Wrap" Text="{Binding SelectedMan.CustomerAccount.Balance}" VerticalAlignment="Top" Margin="5,71.241,0,0" Grid.Column="1" Height="19.507"/>
+							<telerik:RadButton Content="Select a Customer" HorizontalAlignment="Right" VerticalAlignment="Bottom" IsDefault="True" TabIndex="7" Command="{Binding SelectManCommand}" Grid.Column="1" Style="{DynamicResource RadButtonStyle}" Width="129"/>
+						</Grid>
+					</telerik:GroupBox>
+					<Grid Grid.Column="1" Margin="0" Grid.Row="1">
+						<Grid.RowDefinitions>
+							<RowDefinition Height="44*"/>
+							<RowDefinition Height="345*"/>
+							<RowDefinition Height="122*"/>
+						</Grid.RowDefinitions>
+						<TextBlock HorizontalAlignment="Left" Margin="122.33,12.998,0,0" TextWrapping="Wrap" Text="{Binding SelectedItem.InvoiceNumber}" VerticalAlignment="Top" FontSize="14.667" Foreground="#FFBFBFBF"/>
+						<Label Content="Invoice Number :"  VerticalAlignment="Top" Margin="0,7.499,0,0" HorizontalAlignment="Left" Style="{DynamicResource LabelStyle}"/>
+						<StackPanel Margin="379.309,0,5,0" Orientation="Horizontal" HorizontalAlignment="Right">
+							<Label Content="Date :" VerticalAlignment="Top" Margin="0,1.17,0,0" Style="{DynamicResource LabelStyle}" Target="{Binding ElementName=SaleRadDatePicker}" HorizontalAlignment="Left"/>
+							<telerik:RadDatePicker x:Name="SaleRadDatePicker" HorizontalAlignment="Right" SelectedDate="{Binding SelectedItem.EntityDate}" VerticalAlignment="Top" Style="{DynamicResource BasicStyle}"/>
+						</StackPanel>
+						<telerik:RadGridView Margin="0" ItemsSource="{Binding SelectedItem.TransactionLedgers}" IsReadOnly="True" ValidatesOnDataErrors="None" AutoGenerateColumns="False" Grid.Row="1">
+							<telerik:RadGridView.Columns>
+								<telerik:GridViewDataColumn Header="Name" MinWidth="100" HeaderTextAlignment="Center" DataMemberBinding="{Binding Product.ProductName}"/>
+								<telerik:GridViewDataColumn Header="Rate" MinWidth="100" HeaderTextAlignment="Center" DataMemberBinding="{Binding Rate}"/>
+								<telerik:GridViewDataColumn Header="Quantity" MinWidth="100" HeaderTextAlignment="Center" DataMemberBinding="{Binding Quantity}"/>
+								<telerik:GridViewDataColumn Header="Amount" MinWidth="100" HeaderTextAlignment="Center" DataMemberBinding="{Binding Amount}"/>
+								<telerik:GridViewColumn Header="Remove" MinWidth="100" HeaderTextAlignment="Center">
+									<telerik:GridViewColumn.CellTemplate>
+										<DataTemplate>
+											<telerik:RadButton Content="Remove" Command="{Binding DataContext.RemoveProductFromChatCommand, RelativeSource={RelativeSource FindAncestor, AncestorLevel=9, AncestorType={x:Type Grid}}}" CommandParameter="{Binding}"/>
+										</DataTemplate>
+									</telerik:GridViewColumn.CellTemplate>
+								</telerik:GridViewColumn>
+							</telerik:RadGridView.Columns>
+						</telerik:RadGridView>
+						<telerik:GroupBox Header="Payment" Style="{DynamicResource GroupBoxStyle}" Grid.Row="2">
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="80*"/>
+									<ColumnDefinition Width="247*"/>
+									<ColumnDefinition Width="188*"/>
+								</Grid.ColumnDefinitions>
+								<Label HorizontalAlignment="Right" Content="Method :" VerticalAlignment="Top" Margin="0,11.145,114.042,0" Style="{DynamicResource LabelStyle}" Height="29.507" Width="68.537" Grid.Column="2"/>
+								<telerik:RadComboBox ItemsSource="{Binding Source={StaticResource PaymentMethords}}" SelectedValue="{Binding PaymentMethod, Mode=TwoWay}"  VerticalAlignment="Top" Margin="0,11.279,10.101,0" TabIndex="8" SelectedIndex="0" HorizontalAlignment="Right" Width="100" Height="22" Grid.Column="2"/>
+								<Grid Visibility="{Binding PaymentMethod, ConverterParameter={x:Static Helpers:PaymentMethods.Due}, Converter={StaticResource PaymentMethodToPanelVisiable}}"  Grid.Column="1" d:IsHidden="True">
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="59*"/>
+										<ColumnDefinition Width="86*"/>
+									</Grid.ColumnDefinitions>
+									<Label HorizontalAlignment="Right" Content="Amount :" VerticalAlignment="Top" Margin="0,38.493,0.487,25.493" Style="{DynamicResource LabelStyle}"/>
+									<telerik:RadNumericUpDown x:Name="PurchaseDueAmount" Value="{Binding SelectedItem.PaidTotal}" Minimum="0" VerticalAlignment="Top" Maximum="{Binding Text, ElementName=textBlock1}" Margin="5,33.493,0,0" Grid.Column="1">
+										<i:Interaction.Triggers>
+											<i:EventTrigger EventName="ValueChanged">
+												<Custom:EventToCommand Command="{Binding DuePaymentCommand}"/>
+											</i:EventTrigger>
+										</i:Interaction.Triggers>
+									</telerik:RadNumericUpDown>
+								</Grid>
+								<telerik:RadButton Content="Payment" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,0.001,-0.008" TabIndex="9" Command="{Binding SaveCommand}" CommandParameter="{Binding SelectedItem}" Style="{DynamicResource RadButtonStyle}" Grid.Column="2" Width="100"/>
+								<Grid Visibility="{Binding PaymentMethod, ConverterParameter={x:Static Helpers:PaymentMethods.Bank}, Converter={StaticResource PaymentMethodToPanelVisiable}}" Grid.Column="1" d:IsHidden="True" d:IsLocked="True">
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="3*"/>
+										<ColumnDefinition Width="5*"/>
+									</Grid.ColumnDefinitions>
+									<Label HorizontalAlignment="Right" Content="Bank Name :" VerticalAlignment="Top" Margin="0,4.986,0,0" Style="{DynamicResource LabelStyle}"/>
+									<Label HorizontalAlignment="Right" Content="Cheque :" Margin="0,49.493,0,0" Style="{DynamicResource LabelStyle}" VerticalAlignment="Top"/>
+									<dxe:TextEdit  VerticalAlignment="Top" NullText="Number" Margin="0,50.155,0,0" Grid.Column="1" Style="{DynamicResource TextEditStyle}"/>
+									<telerik:RadComboBox Margin="0,4.493,0,0" VerticalAlignment="Top" SelectedIndex="1" ItemsSource="{Binding BankAccounts}" DisplayMemberPath="BankName" SelectedValuePath="Id" SelectedValue="{Binding BankId}" Height="30" Grid.Column="1"/>
+								</Grid>
+							</Grid>
+						</telerik:GroupBox>
+					</Grid>
+				</Grid>
+			</telerik:RadBusyIndicator>
+		</Grid>
+</UserControl>

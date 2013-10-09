@@ -1,0 +1,4 @@
+﻿1) Stock Register and Purchase Details Are same Now.
+2) StockRegister Class Is not Use
+3) Stock Register Report is not implemented
+4) Sales Report is not implemented

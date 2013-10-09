@@ -1,0 +1,44 @@
+﻿<controls:MetroWindow
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:Custom="http://www.galasoft.ch/mvvmlight" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro" x:Class="whostpos.Windows.ProductList"
+        Title="Product List" ShowIconOnTitleBar="True" Icon="Icons/PosIcon.ico" Height="522" Width="420">
+    <controls:MetroWindow.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colours.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </controls:MetroWindow.Resources>
+    <Grid>
+        <telerik:RadBusyIndicator IsBusy="{Binding IsBusy}" BusyContent="{Binding BusyConyent}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35*"/>
+                    <RowDefinition Height="35*"/>
+                    <RowDefinition Height="421*"/>
+                </Grid.RowDefinitions>
+
+                <telerik:RadGridView x:Name="GridProductList" ItemsSource="{Binding ItemCollection}" Margin="0" RenderTransformOrigin="0.5,0.5" Grid.Row="2" IsReadOnly="True" ValidatesOnDataErrors="None" AutoGenerateColumns="False">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseDoubleClick">
+                            <Custom:EventToCommand Command="{Binding DoubleClickCommand}" CommandParameter="{Binding SelectedItem, ElementName=GridProductList}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <telerik:RadGridView.Columns>
+                        <telerik:GridViewImageColumn Header="Photo" HeaderTextAlignment="Center" ImageHeight="50" ImageWidth="50" DataMemberBinding="{Binding Photo}"/>
+                        <telerik:GridViewDataColumn Header="Name" MinWidth="120" HeaderTextAlignment="Center" DataMemberBinding="{Binding ProductName}" ShowDistinctFilters="False"/>
+                        <telerik:GridViewDataColumn Header="Code" HeaderTextAlignment="Center" MinWidth="120" DataMemberBinding="{Binding Code}" ShowDistinctFilters="False"/>
+                    </telerik:RadGridView.Columns>
+                </telerik:RadGridView>
+                <TextBlock TextWrapping="Wrap" Text="{Binding Title}" VerticalAlignment="Top" FontSize="26.667" TextAlignment="Center" Foreground="#FFBFBFBF" Grid.RowSpan="2" Height="35.47"/>
+                <dxe:TextEdit Margin="0,5,0,0" Grid.Row="1" NullText="Search"  Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="25" FontSize="14.667"/>
+            </Grid>
+        </telerik:RadBusyIndicator>
+    </Grid>
+</controls:MetroWindow>

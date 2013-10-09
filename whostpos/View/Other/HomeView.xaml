@@ -1,0 +1,66 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" x:Class="whostpos.View.Other.HomeView" 
+             mc:Ignorable="d" DataContext="{Binding HomeViewModel, Source={StaticResource Locator}}">
+    <telerik:RadBusyIndicator IsBusy="{Binding IsBusy}" BusyContent="{Binding BusyConyent}">
+        <Grid>
+            <Grid HorizontalAlignment="Left" Height="260" Margin="10,10,0,0" VerticalAlignment="Top" Width="308">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="129*"/>
+                    <ColumnDefinition Width="179*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Name :" HorizontalAlignment="Right" Margin="0,49.516,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle}" Height="29.507" Width="55.933"/>
+                <Label Content="Contract Number :" HorizontalAlignment="Right" Margin="0,83.975,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle}"/>
+                <Label Content="Email :" HorizontalAlignment="Right" Margin="0,118.482,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle}"/>
+                <Label Content="Web :" HorizontalAlignment="Right" Margin="0,152.989,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle}"/>
+                <Label Content="Contract :" HorizontalAlignment="Right" Margin="0,187.496,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle}"/>
+                <Label Content="Address :" HorizontalAlignment="Right" Margin="0,221.961,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle}"/>
+                <TextBlock Grid.Column="1" Margin="0,54.344,0,0" TextWrapping="Wrap" Text="{Binding CompanyInformation.CompaneyName}" VerticalAlignment="Top" FontSize="14.667"/>
+                <TextBlock Grid.Column="1" Margin="0,88.975,0,0" TextWrapping="Wrap" Text="{Binding CompanyInformation.ContractNumber}" VerticalAlignment="Top" FontSize="14.667"/>
+                <TextBlock Grid.Column="1" Margin="0,123.482,0,0" TextWrapping="Wrap" Text="{Binding CompanyInformation.Email}" VerticalAlignment="Top" FontSize="14.667"/>
+                <TextBlock Grid.Column="1" Margin="0,157.989,0,0" TextWrapping="Wrap" Text="{Binding CompanyInformation.Web}" VerticalAlignment="Top" FontSize="14.667"/>
+                <TextBlock Grid.Column="1" Margin="0,192.496,0,0" TextWrapping="Wrap" Text="{Binding CompanyInformation.ContractNumber}" VerticalAlignment="Top" FontSize="14.667"/>
+                <TextBlock Grid.Column="1" Margin="0,226.961,0,0" TextWrapping="Wrap" Text="{Binding CompanyInformation.Address}" VerticalAlignment="Top" FontSize="14.667"/>
+                <TextBlock Margin="0" TextWrapping="Wrap" Text="Company Information" VerticalAlignment="Top" Grid.ColumnSpan="2" Style="{DynamicResource Title}"/>
+            </Grid>
+            <Grid Margin="318,10,20,0" VerticalAlignment="Top" HorizontalAlignment="Right">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="153*"/>
+                    <ColumnDefinition Width="149*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Total Product Item :" HorizontalAlignment="Right" Margin="0,10,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle}" Height="29.507" Width="137.257"/>
+                <Label Content="Total Product (Stock) :" HorizontalAlignment="Right" Margin="0,44.507,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle}" Height="29.507" Width="152"/>
+                <Label Content="Total Supplier :" HorizontalAlignment="Right" Margin="0,79.014,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle}"/>
+                <Label Content="Total Customer :" HorizontalAlignment="Right" Margin="0,150.165,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle}"/>
+                <Label Content="Total Bank Account :" HorizontalAlignment="Right" Margin="0,113.521,0,0" VerticalAlignment="Top" Style="{DynamicResource LabelStyle}"/>
+                <TextBlock Grid.Column="1" Margin="0,15.626,0,0" TextWrapping="Wrap" Text="{Binding TotalProductItems}" VerticalAlignment="Top" FontSize="14.667"/>
+                <TextBlock Grid.Column="1" Margin="0,50.054,0,0" TextWrapping="Wrap" Text="{Binding TotalProductinStock}" VerticalAlignment="Top" FontSize="14.667"/>
+                <TextBlock Grid.Column="1" Margin="0,84.64,0,0" TextWrapping="Wrap" Text="{Binding TotalSupplier}" VerticalAlignment="Top" FontSize="14.667"/>
+                <TextBlock Grid.Column="1" Margin="0,119.147,0,0" TextWrapping="Wrap" Text="{Binding TotalBankAccount}" VerticalAlignment="Top" FontSize="14.667"/>
+                <TextBlock Grid.Column="1" Margin="0,156.291,0,0" TextWrapping="Wrap" Text="{Binding TotalCustomer}" VerticalAlignment="Top" FontSize="14.667"/>
+            </Grid>
+            <Grid Margin="10,286.5,0,0" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="136*"/>
+                    <ColumnDefinition Width="130*"/>
+                    <ColumnDefinition Width="145*"/>
+                    <ColumnDefinition Width="130*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="1" Margin="0,17.83,0,0" TextWrapping="Wrap" Text="{Binding TodayTotalSalesItem}" VerticalAlignment="Top" FontSize="14.667"/>
+                <Label Content="Today Sales Items :" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,11.5,0,0" Style="{DynamicResource LabelStyle}"/>
+                <Label Content="Todays Total Sales :" HorizontalAlignment="Right" Margin="0,10,0,0" VerticalAlignment="Top" Grid.Column="2" Style="{DynamicResource LabelStyle}"/>
+                <Label Content="Weekly Total Sales :" HorizontalAlignment="Right" Margin="0,46.998,0,0" VerticalAlignment="Top" Grid.Column="2" Style="{DynamicResource LabelStyle}"/>
+                <Label Content="Monthly Total Sales :" HorizontalAlignment="Right" Margin="0,84.505,0,0" VerticalAlignment="Top" Grid.Column="2" Style="{DynamicResource LabelStyle}"/>
+                <TextBlock Grid.Column="3" Margin="0,15.326,0,0" TextWrapping="Wrap" Text="{Binding TotalSalesToday}" VerticalAlignment="Top" FontSize="14.667"/>
+                <TextBlock Grid.Column="3" Margin="0,51.998,0,0" TextWrapping="Wrap" Text="{Binding TotalSalesWeekly}" VerticalAlignment="Top" FontSize="14.667"/>
+                <TextBlock Grid.Column="3" Margin="0,89.505,0,0" TextWrapping="Wrap" Text="{Binding TotalSalesMonthly}" VerticalAlignment="Top" FontSize="14.667"/>
+            </Grid>
+            <TextBlock Margin="0,408.5,0,20" TextWrapping="Wrap" Text="{Binding DaysLeft}" VerticalAlignment="Top" Style="{DynamicResource Title}"/>
+            <TextBlock Margin="0,448.97,0,15" TextWrapping="Wrap" Text="{Binding LicenseTo}" VerticalAlignment="Top" FontSize="14.667" TextAlignment="Center"/>
+
+        </Grid>
+    </telerik:RadBusyIndicator>
+</UserControl>

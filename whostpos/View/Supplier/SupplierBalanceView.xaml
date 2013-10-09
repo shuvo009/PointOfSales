@@ -1,0 +1,72 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" 
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:Custom="http://www.galasoft.ch/mvvmlight"
+    xmlns:converters="clr-namespace:whostpos.Converters"
+    xmlns:helpers="clr-namespace:whostpos.Core.Helpers;assembly=whostpos.Core"
+    x:Class="whostpos.View.Supplier.SupplierBalanceView" 
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:PosEnumToBooleanConverter x:Key="EnumToBooleanConverter"/>
+    </UserControl.Resources>
+    <Grid DataContext="{Binding SupplierBalanceViewModel, Source={StaticResource Locator}}">
+        <telerik:RadBusyIndicator BusyContent="{Binding BusyConyent}" IsBusy="{Binding IsBusy}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="105"/>
+                    <RowDefinition Height="430*"/>
+                    <RowDefinition Height="33"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="55*"/>
+                    <ColumnDefinition Width="103*"/>
+                </Grid.ColumnDefinitions>
+                <telerik:GroupBox Grid.Column="1" Header="Search" Margin="0,0,0,-0.001" VerticalAlignment="Top" Grid.Row="1" Style="{DynamicResource GroupBoxStyle}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="109*"/>
+                            <ColumnDefinition Width="235*"/>
+                            <ColumnDefinition Width="149*"/>
+                        </Grid.ColumnDefinitions>
+                        <RadioButton x:Name="RadoName" Content="{Binding NameContent}" TabIndex="2" IsChecked="{Binding SearchOptions, ConverterParameter={x:Static helpers:SearchOptions.Name}, Converter={StaticResource EnumToBooleanConverter}}" VerticalAlignment="Top" HorizontalAlignment="Left" Style="{DynamicResource RadioButtonStyle}" Margin="0,5.328,0,0"/>
+                        <RadioButton x:Name="RadoAmount" Content="{Binding AmountContent}" Margin="-1,0,0,24.005" TabIndex="4"  IsChecked="{Binding SearchOptions, ConverterParameter={x:Static helpers:SearchOptions.Amount}, Converter={StaticResource EnumToBooleanConverter}}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{DynamicResource RadioButtonStyle}"/>
+                        <RadioButton Content="{Binding AllContent}" Margin="0,53.993,0,0" TabIndex="6" IsChecked="{Binding SearchOptions, ConverterParameter={x:Static helpers:SearchOptions.All}, Converter={StaticResource EnumToBooleanConverter}}" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{DynamicResource RadioButtonStyle}"/>
+                        <dxe:TextEdit VerticalAlignment="Top" Height="30" TabIndex="3" Margin="0,2.5,0,0" IsEnabled="{Binding IsChecked, ElementName=RadoName}" Text="{Binding SearchMetadata.Name, Mode=TwoWay}" Grid.Column="1" Style="{DynamicResource BasicStyle}"/>
+                        <telerik:RadNumericUpDown Margin="0,35.5,0,0" VerticalAlignment="Top" TabIndex="5" IsEnabled="{Binding IsChecked, ElementName=RadoAmount}" Grid.Column="1" Value="{Binding SearchMetadata.Amount, Mode=TwoWay}" />
+                        <telerik:RadButton Content="{Binding SearchContent}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="33.463,38.166,0,0" TabIndex="7" Command="{Binding SearchCommand}" CommandParameter="{Binding SearchMetadata}" Grid.Column="2" Style="{DynamicResource RadButtonStyle}"/>
+                    </Grid>
+                </telerik:GroupBox>
+                <telerik:RadGridView x:Name="GridViewSearchResult" ItemsSource="{Binding SearchResult}" Grid.Column="1" Margin="10,0,0,0" Grid.Row="2" IsReadOnly="True" AutoGenerateColumns="False" ValidatesOnDataErrors="None">
+                    <telerik:RadGridView.Columns>
+                        <telerik:GridViewDataColumn Header="Name" MinWidth="100" HeaderTextAlignment="Center" DataMemberBinding="{Binding Name}"/>
+                        <telerik:GridViewDataColumn Header="Receive" MinWidth="100" HeaderTextAlignment="Center" DataMemberBinding="{Binding SupplierAccount.Credit}"/>
+                        <telerik:GridViewDataColumn Header="Payment" MinWidth="100" HeaderTextAlignment="Center" DataMemberBinding="{Binding SupplierAccount.Debit}"/>
+                        <telerik:GridViewExpressionColumn Header="Balance" MinWidth="100" HeaderTextAlignment="Center" Expression="SupplierAccount.Credit - SupplierAccount.Debit"/>
+                    </telerik:RadGridView.Columns>
+                </telerik:RadGridView>
+                <telerik:RadButton Content="{Binding PrintContent}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,0" Width="100" TabIndex="7" Grid.Column="1" Command="{Binding CollectionPrintCommand}" Grid.Row="3" Style="{DynamicResource RadButtonStyle}" CommandParameter="{Binding Items, ElementName=GridViewSearchResult}"/>
+                <telerik:RadGridView x:Name="SearchResult" Margin="5,40,0,0" ItemsSource="{Binding ItemCollection}" AutoGenerateColumns="False" ValidatesOnDataErrors="None" IsReadOnly="True" Grid.Row="1" Grid.RowSpan="3">
+                    <telerik:RadGridView.Columns>
+                        <telerik:GridViewDataColumn Header="Name" MinWidth="70" DataMemberBinding="{Binding Name}" ShowDistinctFilters="False"/>
+                        <telerik:GridViewDataColumn Header="Mobile" MinWidth="70" DataMemberBinding="{Binding Mobile}" ShowDistinctFilters="False"/>
+                    </telerik:RadGridView.Columns>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <Custom:EventToCommand Command="{Binding SelectionChangedCommand}"  CommandParameter="{Binding SelectedItem.Id, ElementName=SearchResult}"/>
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseDoubleClick">
+                            <Custom:EventToCommand Command="{Binding SelectionChangedCommand}"  CommandParameter="{Binding SelectedItem.Id, ElementName=SearchResult}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </telerik:RadGridView>
+                <TextBlock Margin="0" TextWrapping="Wrap" Text="{Binding Title}" VerticalAlignment="Top" Style="{DynamicResource Title}" Grid.ColumnSpan="2"/>
+                <dxe:TextEdit VerticalAlignment="Top" TabIndex="3" Margin="5,5,0,0" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Style="{DynamicResource TextEditStyle}"/>
+            </Grid>
+        </telerik:RadBusyIndicator>
+    </Grid>
+</UserControl>

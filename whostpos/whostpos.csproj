@@ -1,0 +1,582 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{50F2B11B-B7B0-4378-BF65-7623B633DD55}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>whostpos</RootNamespace>
+    <AssemblyName>Whost Pos</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icons\PosIcon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Accessibility" />
+    <Reference Include="DevExpress.Data.v11.1">
+      <HintPath>..\..\DPOS\DPOS\bin\Debug\DevExpress.Data.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v11.1.Linq">
+      <HintPath>..\..\DPOS\DPOS\bin\Debug\DevExpress.Data.v11.1.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="devexpress.xpf.core.v11.1">
+      <HintPath>..\..\DPOS\DPOS\bin\Debug\devexpress.xpf.core.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras.WPF4">
+      <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\net40\GalaSoft.MvvmLight.Extras.WPF4.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.WPF4">
+      <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\net40\GalaSoft.MvvmLight.WPF4.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro">
+      <HintPath>..\packages\MahApps.Metro.0.10.1.1\lib\net40\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CompilerServices.AsyncTargetingPack.Net4">
+      <HintPath>..\packages\Microsoft.CompilerServices.AsyncTargetingPack.1.0.1\lib\net40\Microsoft.CompilerServices.AsyncTargetingPack.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Json">
+      <HintPath>..\packages\JsonValue.0.6.0\lib\40\Microsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Net.Http.Formatting">
+      <HintPath>..\packages\HttpClient.0.6.0\lib\40\Microsoft.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Server.Common">
+      <HintPath>..\packages\JsonValue.0.6.0\lib\40\Microsoft.Server.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationUI, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="ReachFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\HttpClient.0.6.0\lib\40\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\net40\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Telerik.Reporting, Version=7.1.13.612, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls, Version=2013.2.611.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="telerik.windows.controls.datavisualization, Version=2013.2.611.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="telerik.windows.controls.gridview, Version=2013.2.611.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Controls.Input, Version=2013.2.611.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="telerik.windows.controls.navigation, Version=2013.2.611.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="telerik.windows.controls.ribbonview, Version=2013.2.611.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Windows.Data, Version=2013.2.611.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL" />
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="whost.License.Validator, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\ApplicationLicense\whost.License.Validator\bin\Release\whost.License.Validator.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PresentationFramework">
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Class\CommandParser.cs" />
+    <Compile Include="Converters\BoolReverser.cs" />
+    <Compile Include="Converters\EnumToBooleanConverter.cs" />
+    <Compile Include="Converters\PaymentMethodToPanelVisiable.cs" />
+    <Compile Include="Converters\PaymentMethordToBool.cs" />
+    <Compile Include="MenuCommands\ActivationCommand.cs" />
+    <Compile Include="MenuCommands\CompanyCommand.cs" />
+    <Compile Include="MenuCommands\CustomerDuePaymentCommand.cs" />
+    <Compile Include="MenuCommands\DoBankDepositCommand.cs" />
+    <Compile Include="MenuCommands\DoBankWithdrawalCommand.cs" />
+    <Compile Include="MenuCommands\DoExpenseCommand.cs" />
+    <Compile Include="MenuCommands\HomeCommand.cs" />
+    <Compile Include="MenuCommands\NotFoundCommand.cs" />
+    <Compile Include="MenuCommands\PermissionNotFound.cs" />
+    <Compile Include="MenuCommands\PurchaseCommand.cs" />
+    <Compile Include="MenuCommands\PurchaseReturnCommand.cs" />
+    <Compile Include="MenuCommands\SalesCommand.cs" />
+    <Compile Include="MenuCommands\SetupBankAccountsCommand.cs" />
+    <Compile Include="MenuCommands\SetupCustomerCommand.cs" />
+    <Compile Include="MenuCommands\SetupProductCommand.cs" />
+    <Compile Include="MenuCommands\SetupSupplierCommand.cs" />
+    <Compile Include="MenuCommands\SupplierDuePaymentCommand.cs" />
+    <Compile Include="MenuCommands\SupplierReportCommand.cs" />
+    <Compile Include="MenuCommands\UserAccountMenuCommand.cs" />
+    <Compile Include="MenuCommands\UserLoginCommand.cs" />
+    <Compile Include="MenuCommands\ViewBankDepositReportCommand.cs" />
+    <Compile Include="MenuCommands\ViewBankWithdrawalReportCommand.cs" />
+    <Compile Include="MenuCommands\ViewCashReportCommand.cs" />
+    <Compile Include="MenuCommands\ViewCustomerBalanceCommand.cs" />
+    <Compile Include="MenuCommands\ViewCustomerLedgerCommand.cs" />
+    <Compile Include="MenuCommands\ViewCustomerReportCommand.cs" />
+    <Compile Include="MenuCommands\ViewDatabaseRestoreAndBackupCommand.cs" />
+    <Compile Include="MenuCommands\ViewExpensesReport.cs" />
+    <Compile Include="MenuCommands\ViewInitialBalanceCommand.cs" />
+    <Compile Include="MenuCommands\ViewProductReportCommand.cs" />
+    <Compile Include="MenuCommands\ViewPurchaseReturnReportCommand.cs" />
+    <Compile Include="MenuCommands\ViewSalesReportCommand.cs" />
+    <Compile Include="MenuCommands\ViewSalesReturnCommand.cs" />
+    <Compile Include="MenuCommands\ViewSalesReturnReportCommand.cs" />
+    <Compile Include="MenuCommands\ViewStockCommand.cs" />
+    <Compile Include="MenuCommands\ViewStockRegisterCommand.cs" />
+    <Compile Include="MenuCommands\ViewSupplierBalanceCommand.cs" />
+    <Compile Include="MenuCommands\ViewSupplierLedgerCommand.cs" />
+    <Compile Include="TestWindow.xaml.cs">
+      <DependentUpon>TestWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\Bank\BankAcountViewModel.cs" />
+    <Compile Include="ViewModel\Bank\BankDepositReportViewModel.cs" />
+    <Compile Include="ViewModel\Bank\BankDepositViewModel.cs" />
+    <Compile Include="ViewModel\Bank\BankWithdrawalReportViewModel.cs" />
+    <Compile Include="ViewModel\Bank\BankWithdrawalViewModel.cs" />
+    <Compile Include="ViewModel\Cash\CashReportViewModel.cs" />
+    <Compile Include="ViewModel\Cash\InitialBalanceViewModel.cs" />
+    <Compile Include="ViewModel\CompanyViewModel.cs" />
+    <Compile Include="ViewModel\Customer\CustomeBalanceViewModel.cs" />
+    <Compile Include="ViewModel\Customer\CustomerDuePaymentViewModel.cs" />
+    <Compile Include="ViewModel\Customer\CustomerReportViewModel.cs" />
+    <Compile Include="ViewModel\Customer\CustomerViewModel.cs" />
+    <Compile Include="ViewModel\Customer\CutomerLedgerViewModel.cs" />
+    <Compile Include="ViewModel\Database\DatabaseRestoreBackupViewModel.cs" />
+    <Compile Include="ViewModel\Expenses\ExpenceViewModel.cs" />
+    <Compile Include="ViewModel\Expenses\ExpensesReportViewModel.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\Others\HomeViewModel.cs" />
+    <Compile Include="ViewModel\Products\ProductReportViewModel.cs" />
+    <Compile Include="ViewModel\Products\ProductSetupViewModel.cs" />
+    <Compile Include="ViewModel\Stock\StockViewModel.cs" />
+    <Compile Include="ViewModel\Supplier\SupplierBalanceViewModel.cs" />
+    <Compile Include="ViewModel\Supplier\SupplierDuePaymentViewModel.cs" />
+    <Compile Include="ViewModel\Supplier\SupplierLedgerViewModel.cs" />
+    <Compile Include="ViewModel\Supplier\SupplierReportViewModel.cs" />
+    <Compile Include="ViewModel\Supplier\SupplierViewModel.cs" />
+    <Compile Include="ViewModel\Transction\PurchaseReportViewModel.cs" />
+    <Compile Include="ViewModel\Transction\PurchaseReturnReportViewModel.cs" />
+    <Compile Include="ViewModel\Transction\PurchaseReturnViewModel.cs" />
+    <Compile Include="ViewModel\Transction\PurchaseViewModel.cs" />
+    <Compile Include="ViewModel\Transction\SalesReportViewModel.cs" />
+    <Compile Include="ViewModel\Transction\SalesReturnReportViewModel.cs" />
+    <Compile Include="ViewModel\Transction\SalesReturnViewModel.cs" />
+    <Compile Include="ViewModel\Transction\SalesViewModel.cs" />
+    <Compile Include="ViewModel\UserAccount\ChangePasswodViewModel.cs" />
+    <Compile Include="ViewModel\UserAccount\UserAccountViewModel.cs" />
+    <Compile Include="ViewModel\UserAccount\UserLoginViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="View\Bank\BankAccountView.xaml.cs">
+      <DependentUpon>BankAccountView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Bank\BankDepositReportView.xaml.cs">
+      <DependentUpon>BankDepositReportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Bank\BankDepositView.xaml.cs">
+      <DependentUpon>BankDepositView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Bank\BankWithdrawalReportView.xaml.cs">
+      <DependentUpon>BankWithdrawalReportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Bank\BankWithdrawalView.xaml.cs">
+      <DependentUpon>BankWithdrawalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Cash\CashReportView.xaml.cs">
+      <DependentUpon>CashReportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Cash\InitialBalanceView.xaml.cs">
+      <DependentUpon>InitialBalanceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CompanyInformationView.xaml.cs">
+      <DependentUpon>CompanyInformationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Customer\CustomerBalanceView.xaml.cs">
+      <DependentUpon>CustomerBalanceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Customer\CustomerDuePaumentView.xaml.cs">
+      <DependentUpon>CustomerDuePaumentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Customer\CustomerLedgerView.xaml.cs">
+      <DependentUpon>CustomerLedgerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Customer\CustomerReportView.xaml.cs">
+      <DependentUpon>CustomerReportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Customer\CustomerView.xaml.cs">
+      <DependentUpon>CustomerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Database\DatabaseBackupRestoreView.xaml.cs">
+      <DependentUpon>DatabaseBackupRestoreView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Expenses\ExpenseReportView.xaml.cs">
+      <DependentUpon>ExpenseReportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Expenses\ExpenseView.xaml.cs">
+      <DependentUpon>ExpenseView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Products\ProductReportView.xaml.cs">
+      <DependentUpon>ProductReportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Products\ProductSetupView.xaml.cs">
+      <DependentUpon>ProductSetupView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Stock\StockView.xaml.cs">
+      <DependentUpon>StockView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Supplier\SpplierLedgerView.xaml.cs">
+      <DependentUpon>SpplierLedgerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Supplier\SupplierBalanceView.xaml.cs">
+      <DependentUpon>SupplierBalanceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Supplier\SupplierDuePaymentView.xaml.cs">
+      <DependentUpon>SupplierDuePaymentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Supplier\SupplierReportView.xaml.cs">
+      <DependentUpon>SupplierReportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Supplier\SupplierView.xaml.cs">
+      <DependentUpon>SupplierView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Transction\PurchaseReportView.xaml.cs">
+      <DependentUpon>PurchaseReportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Transction\PurchaseReturnReportView.xaml.cs">
+      <DependentUpon>PurchaseReturnReportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Transction\PurchaseReturnView.xaml.cs">
+      <DependentUpon>PurchaseReturnView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Transction\PurchaseView.xaml.cs">
+      <DependentUpon>PurchaseView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Transction\SalesReportView.xaml.cs">
+      <DependentUpon>SalesReportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Transction\SalesReturnReportView.xaml.cs">
+      <DependentUpon>SalesReturnReportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Transction\SalesReturnView.xaml.cs">
+      <DependentUpon>SalesReturnView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Transction\SalesView.xaml.cs">
+      <DependentUpon>SalesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserAcount\ChangePasswodView.xaml.cs">
+      <DependentUpon>ChangePasswodView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Other\HomeView.xaml.cs">
+      <DependentUpon>HomeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserAcount\UserAccountView.xaml.cs">
+      <DependentUpon>UserAccountView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserAcount\UserLoginView.xaml.cs">
+      <DependentUpon>UserLoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="CommonResourceDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="TestWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Bank\BankAccountView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Bank\BankDepositReportView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Bank\BankDepositView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Bank\BankWithdrawalReportView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Bank\BankWithdrawalView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Cash\CashReportView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Cash\InitialBalanceView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\CompanyInformationView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Customer\CustomerBalanceView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Customer\CustomerDuePaumentView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Customer\CustomerLedgerView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Customer\CustomerReportView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Customer\CustomerView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Database\DatabaseBackupRestoreView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Expenses\ExpenseReportView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Expenses\ExpenseView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Products\ProductReportView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Products\ProductSetupView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Stock\StockView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Supplier\SpplierLedgerView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Supplier\SupplierBalanceView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Supplier\SupplierDuePaymentView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Supplier\SupplierReportView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Supplier\SupplierView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Transction\PurchaseReportView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Transction\PurchaseReturnReportView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Transction\PurchaseReturnView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Transction\PurchaseView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Transction\SalesReportView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Transction\SalesReturnReportView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Transction\SalesReturnView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Transction\SalesView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\UserAcount\ChangePasswodView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Other\HomeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\UserAcount\UserAccountView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\UserAcount\UserLoginView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="MVVMLight.Nuget.Readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\PosIcon.ico" />
+    <Resource Include="MenuImages\ApplicationIcon.png" />
+    <Resource Include="MenuImages\Balance.png" />
+    <Resource Include="MenuImages\Bank.png" />
+    <Resource Include="MenuImages\Cash.png" />
+    <Resource Include="MenuImages\CUstomer.png" />
+    <Resource Include="MenuImages\Database.png" />
+    <Resource Include="MenuImages\Deposit.png" />
+    <Resource Include="MenuImages\DuePayment.png" />
+    <Resource Include="MenuImages\exit.png" />
+    <Resource Include="MenuImages\Expences.png" />
+    <Resource Include="MenuImages\Installment.png" />
+    <Resource Include="MenuImages\invoice.png" />
+    <Resource Include="MenuImages\Ledger.png" />
+    <Resource Include="MenuImages\Logout.png" />
+    <Resource Include="MenuImages\Payment.png" />
+    <Resource Include="MenuImages\Product.png" />
+    <Resource Include="MenuImages\Purchase.png" />
+    <Resource Include="MenuImages\PurchaseReturn.png" />
+    <Resource Include="MenuImages\Sales.png" />
+    <Resource Include="MenuImages\SalesReturn.png" />
+    <Resource Include="MenuImages\Shop.png" />
+    <Resource Include="MenuImages\Stock.png" />
+    <Resource Include="MenuImages\StockRegister.png" />
+    <Resource Include="MenuImages\Supplier.png" />
+    <Resource Include="MenuImages\UserAccountControl.png" />
+    <Resource Include="MenuImages\Valuation.png" />
+    <Resource Include="MenuImages\Widhdaraw.png" />
+    <Resource Include="Notes\TextFile1.txt" />
+    <SplashScreen Include="WhostSplashScreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\whostpos.Core\whostpos.Core.csproj">
+      <Project>{9137c316-8f1f-4f64-8ce4-b214789a3705}</Project>
+      <Name>whostpos.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\whostpos.Domain\whostpos.Domain.csproj">
+      <Project>{704ffebe-c00f-4315-a86d-a1fdef0882ab}</Project>
+      <Name>whostpos.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\whostpos.Entitys\whostpos.Entitys.csproj">
+      <Project>{e2a01de5-6d38-4f9a-9321-9784657b9f68}</Project>
+      <Name>whostpos.Entitys</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="MenuImages\home.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

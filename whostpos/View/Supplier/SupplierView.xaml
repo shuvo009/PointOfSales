@@ -1,0 +1,62 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" x:Class="whostpos.View.Supplier.SupplierView" 
+             mc:Ignorable="d">
+    <Grid DataContext="{Binding SupplierViewModel, Source={StaticResource Locator}}">
+        <telerik:RadBusyIndicator BusyContent="{Binding BusyConyent}" IsBusy="{Binding IsBusy}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="38.681"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="52*"/>
+                    <ColumnDefinition Width="24*"/>
+                    <ColumnDefinition Width="53*"/>
+                    <ColumnDefinition Width="22*"/>
+                </Grid.ColumnDefinitions>
+                <Label HorizontalAlignment="Right" Margin="0,32.663,0,0" VerticalAlignment="Top" Content="Name :" Grid.Column="1" Style="{DynamicResource LabelStyle}" Grid.Row="1"/>
+                <TextBlock Margin="0,4.587,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Style="{DynamicResource Title}" Text="{Binding Title}" Grid.ColumnSpan="4" TextAlignment="Center" Grid.RowSpan="2"/>
+                <dxe:TextEdit x:Name="SupplierName" Focusable="True" VerticalAlignment="Top" Margin="5,34.333,2,0" Height="26" Grid.Column="2" TabIndex="0" Text="{Binding SelectedItem.Name, ValidatesOnDataErrors=True}" Style="{DynamicResource TextEditStyle}" Grid.Row="1"/>
+                <Label HorizontalAlignment="Right" Margin="0,70.985,0,0" VerticalAlignment="Top" Content="Mobile :" Grid.Column="1" Style="{DynamicResource LabelStyle}" Grid.Row="1"/>
+                <dxe:TextEdit VerticalAlignment="Top" Margin="5,73.333,2,0" Height="26" Grid.Column="2" TabIndex="1" Text="{Binding SelectedItem.Mobile, ValidatesOnDataErrors=True}" Style="{DynamicResource TextEditStyle}" Grid.Row="1"/>
+                <Label HorizontalAlignment="Right" Margin="0,110.309,0,0" VerticalAlignment="Top" Content="Telephone :" Grid.Column="1" Style="{DynamicResource LabelStyle}" Grid.Row="1"/>
+                <dxe:TextEdit VerticalAlignment="Top" Margin="5,114.001,2,0" Height="26" Grid.Column="2" TabIndex="2" Text="{Binding SelectedItem.Telephone}" Style="{DynamicResource TextEditStyle}" Grid.Row="1"/>
+                <Label HorizontalAlignment="Right" Margin="0,148.635,0,0" VerticalAlignment="Top" Content="E-Mail :" Grid.Column="1" Style="{DynamicResource LabelStyle}" Grid.Row="1"/>
+                <dxe:TextEdit VerticalAlignment="Top" Margin="5,151.671,2,0" Height="26" Grid.Column="2" TabIndex="3" Text="{Binding SelectedItem.Email}" Style="{DynamicResource TextEditStyle}" Grid.Row="1"/>
+                <Label HorizontalAlignment="Right" Margin="0,184.297,0,0" VerticalAlignment="Top" Content="Web :" Grid.Column="1" Style="{DynamicResource LabelStyle}" Grid.Row="1"/>
+                <dxe:TextEdit VerticalAlignment="Top" Margin="5,188.007,2,0" Height="26" Grid.Column="2" TabIndex="4" Text="{Binding SelectedItem.WebSite}" Style="{DynamicResource TextEditStyle}" Grid.Row="1"/>
+                <Label HorizontalAlignment="Right" Margin="0,221.876,0,0" VerticalAlignment="Top" Content="Contract Person :" Grid.Column="1" Style="{DynamicResource LabelStyle}" Grid.Row="1"/>
+                <dxe:TextEdit VerticalAlignment="Top" Margin="5,224.343,2,0" Height="26" Grid.Column="2" TabIndex="5" Text="{Binding SelectedItem.ContractPerson, ValidatesOnDataErrors=True}" Style="{DynamicResource TextEditStyle}" Grid.Row="1"/>
+                <Label HorizontalAlignment="Right" Margin="0,255.62,0,0" VerticalAlignment="Top" Content="Address :" Grid.Column="1" Style="{DynamicResource LabelStyle}" Grid.Row="1"/>
+                <dxe:TextEdit VerticalAlignment="Top" Margin="5,260.012,2,0" Height="127.333" Grid.Column="2" AcceptsReturn="True" TextWrapping="Wrap" TabIndex="6" Text="{Binding SelectedItem.Address, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Style="{DynamicResource TextEditStyle}" Grid.Row="1"/>
+                <StackPanel HorizontalAlignment="Center" Margin="0,400,0,0" VerticalAlignment="Top" Grid.Column="1" Orientation="Horizontal" Grid.ColumnSpan="3" Grid.Row="1">
+                    <telerik:RadButton Content="{Binding SaveContent}" IsDefault="True" TabIndex="7" Command="{Binding SaveCommand}" CommandParameter="{Binding SelectedItem}" Style="{DynamicResource RadButtonStyle}"/>
+                    <telerik:RadButton Content="{Binding NewContent}" TabIndex="9" Command="{Binding NewCommand}" Style="{DynamicResource RadButtonStyle}"/>
+                    <telerik:RadButton Content="{Binding ResetContent}"  IsDefault="True" TabIndex="10" Command="{Binding ResetCommand}" CommandParameter="{Binding SelectedItem}" Style="{DynamicResource RadButtonStyle}"/>
+                    <telerik:RadButton Content="{Binding DeleteContent}" TabIndex="11" Command="{Binding DeleteCommand}" CommandParameter="{Binding SelectedItem}" Style="{DynamicResource RadButtonStyle}"/>
+                    <telerik:RadButton Content="{Binding PrintContent}"  IsDefault="True" TabIndex="12" Command="{Binding PrintCommand}" CommandParameter="{Binding SelectedItem}" Style="{DynamicResource RadButtonStyle}"/>
+                </StackPanel>
+                <telerik:RadGridView x:Name="SupplierList" Margin="5,40,0,0" ItemsSource="{Binding ItemCollection}" AutoGenerateColumns="False" IsReadOnly="True" ValidatesOnDataErrors="None" Grid.Row="1" TabIndex="14">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding SelectionChangedCommand}" CommandParameter="{Binding SelectedItem.Id, ElementName=SupplierList}"/>
+                        </i:EventTrigger>
+						 <i:EventTrigger EventName="MouseDoubleClick">
+                            <i:InvokeCommandAction Command="{Binding SelectionChangedCommand}" CommandParameter="{Binding SelectedItem.Id, ElementName=SupplierList}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <telerik:RadGridView.Columns>
+                        <telerik:GridViewDataColumn Header="Name" MinWidth="70" HeaderTextAlignment="Center" DataMemberBinding="{Binding Name}" ShowDistinctFilters="False"/>
+                        <telerik:GridViewDataColumn Header="Mobile" MinWidth="70" HeaderTextAlignment="Center" DataMemberBinding="{Binding Mobile}" ShowDistinctFilters="False"/>
+                    </telerik:RadGridView.Columns>
+                </telerik:RadGridView>
+                <dxe:TextEdit Margin="5,2.5,0,0" VerticalAlignment="Top" Style="{DynamicResource TextEditStyle}" NullText="Search" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" TabIndex="13"/>
+                <Grid Grid.Column="1" Margin="0,387.345,0,0" Grid.Row="1" Grid.ColumnSpan="3"/>
+            </Grid>
+        </telerik:RadBusyIndicator>
+    </Grid>
+</UserControl>
